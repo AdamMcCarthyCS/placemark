@@ -1,0 +1,18 @@
+{{> welcome-menu active="login"}}
+
+<section class="section">
+    <h1 class="title">Log in</h1>
+        <form action="/authenticate" method="POST">
+            <div class="field">
+                <label for="" class="label">Email</label>
+                <input type="text" class="input" placeholder="Enter email" name="email">
+            </div>
+            <div class="field">
+                <label for="" class="label">Password</label>
+                <input type="text" class="input" placeholder="Enter password" name="password">
+            </div>
+            <div class="field is-grouped">
+                <button class="button is-link">Submit</button>
+            </div>
+        </form>
+</section>

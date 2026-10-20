@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "741106f6-cdbf-42f0-9fda-958b952f7335"
+    }
+  ],
+  "playlists": [],
+  "tracks": []
+}

@@ -1,0 +1,45 @@
+{
+     "name": "playtime",
+     "version": "0.1.0",
+     "description": "A first web app using node",
+     "license": "ISC",
+     "author": "Adam McCarthy",
+     "type": "module",
+     "main": "src/server.js",
+     "scripts": {
+          "start": "node src/server.js",
+          "dev": "nodemon --ignore src/models/json/db.json --exec npm start",
+          "lint": "eslint . --ext .js",
+          "format": "prettier --write \"src/**/*.js\" \"test/**/*.js\"",
+          "test": "mocha ",
+          "testApi": "mocha --no-config --ui tdd \"test/api/*.test.js\" --exit",
+          "testModels": "mocha --no-config --ui tdd \"test/models/*.test.js\" --exit"
+     },
+     "dependencies": {
+          "@hapi/boom": "^10.0.1",
+          "@hapi/cookie": "^12.0.1",
+          "@hapi/hapi": "^21.4.10",
+          "@hapi/vision": "^7.0.3",
+          "chai": "^6.2.2",
+          "dotenv": "^17.4.2",
+          "handlebars": "^4.7.9",
+          "joi": "^18.2.9",
+          "lowdb": "^7.0.1",
+          "mocha": "^10.8.2",
+          "mongoose": "^9.10.4",
+          "uuid": "^14.0.2"
+     },
+     "devDependencies": {
+          "arkit": "^2.1.0",
+          "axios": "^1.20.0",
+          "eslint": "^8.57.1",
+          "eslint-config-airbnb-base": "^15.0.0",
+          "eslint-config-prettier": "^10.1.8",
+          "eslint-import-resolver-node": "^0.4.0",
+          "eslint-import-resolver-typescript": "^4.4.5",
+          "eslint-plugin-import": "^2.32.0",
+          "nodemon": "^3.1.14",
+          "prettier": "^3.9.6",
+          "prettier-plugin-handlebars": "^0.0.1"
+     }
+}
