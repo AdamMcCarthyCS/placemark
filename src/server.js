@@ -33,7 +33,7 @@ async function init() {
   server.auth.strategy("session", "cookie", {
     cookie: {
       name: process.env.NAME,
-      password: process.env.PASSWORD,
+      password: process.env.cookie_password,
       isSecure: false,
     },
     redirectTo: "/",
@@ -52,7 +52,7 @@ async function init() {
     layout: true,
     isCached: false,
   });
-  db.init("json");
+  db.init("mongo");
 
   server.route(webRoutes);
   server.route(apiRoutes);
