@@ -2,10 +2,11 @@ import Joi from "joi";
 
 export const PlaceSpec = {
   name: Joi.string().required(),
-  latitude: Joi.number.required(),
-  longitude: Joi.number.required(),
-  category: Joi.string.required(),
-  description: Joi.string.required(),
+  latitude: Joi.number().required(),
+  longitude: Joi.number().required(),
+  eircode: Joi.string().required(),
+  category: Joi.string().required(),
+  description: Joi.string().required(),
 }
 
 export const UserSpec = {

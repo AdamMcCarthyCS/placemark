@@ -17,6 +17,7 @@ export const dashboardController = {
   addPlace: {
     validate: {
       payload: PlaceSpec,
+      options: { abortEarly: false },
       failAction: function (request, h, error) {
         return h.view("dashboard", { title: "Error adding place", errors: error.details }).takeover().code(400);
       },
@@ -28,6 +29,7 @@ export const dashboardController = {
         name: request.payload.name,
         latitude: request.payload.latitude,
         longitude: request.payload.longitude,
+        eircode: request.payload.eircode,
         category: request.payload.category,
         description: request.payload.description,
       };
