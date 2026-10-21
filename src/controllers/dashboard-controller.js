@@ -14,6 +14,18 @@ export const dashboardController = {
       return h.view("dashboard", viewData);
     },
   },
+  publicDashboard: {
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      const places = await db.placeStore.getAllPlaces();
+      const viewData = {
+        title: "Place Dashboard",
+        user: loggedInUser,
+        places: places,
+      };
+      return h.view("view-only-dashboard", viewData);
+    },
+  },
   addPlace: {
     validate: {
       payload: PlaceSpec,
@@ -34,7 +46,7 @@ export const dashboardController = {
         description: request.payload.description,
       };
       await db.placeStore.addPlace(newPlace);
-      return h.redirect("/dashboard");
+      return h.redirect("/dashboard/private");
     },
   },
 

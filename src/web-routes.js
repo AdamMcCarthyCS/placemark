@@ -12,7 +12,8 @@ export const webRoutes = [
   { method: "POST", path: "/register", config: accountsController.signup },
   { method: "POST", path: "/authenticate", config: accountsController.login },
 
-  { method: "GET", path: "/dashboard", config: dashboardController.index },
+  { method: "GET", path: "/dashboard/private", config: dashboardController.index },
+  { method: "GET", path: "/dashboard/public", config: dashboardController.publicDashboard},
   { method: "GET", path: "/about", config: aboutController.index },
   { method: "GET", path: "/playlist/{id}", config: playlistController.index },
   { method: "GET", path: "/place/{id}/deletePlace", config: dashboardController.deletePlace },
