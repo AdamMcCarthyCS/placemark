@@ -22,8 +22,8 @@ export const placeMongoStore = {
   },
 
   async getUserPlaces(id) {
-    const place = await Place.find({ userid: id }).lean();
-    return place;
+    const places = await Place.find({ userid: id }).lean();
+    return places;
   },
 
   async deletePlaceById(id) {
@@ -43,6 +43,7 @@ export const placeMongoStore = {
     placeDoc.name = updatedPlace.name;
     placeDoc.latitude = updatedPlace.latitude;
     placeDoc.longitude = updatedPlace.longitude;
+    placeDoc.eircode = updatedPlace.eircode;
     placeDoc.category = updatedPlace.category;
     placeDoc.description = updatedPlace.description;
     await placeDoc.save();

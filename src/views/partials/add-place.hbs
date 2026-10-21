@@ -1,0 +1,37 @@
+<form action="/dashboard/addplace" method="POST">
+    <div class="field">
+        <label class="label">Name</label>
+        <input class="input" type="text" placeholder="Enter place name" name="name">
+    </div>
+    <div class="field">
+        <label class="label">Latitude</label>
+        <input class="input" type="text" placeholder="Enter latitude" name="latitude">
+    </div>
+    <div class="field">
+        <label class="label">Longitude</label>
+        <input class="input" type="text" placeholder="Enter eircode" name="longitude">
+    </div>
+     <div class="field">
+        <label class="label">Eircode</label>
+        <input class="input" type="text" placeholder="Enter place longitude" name="longitude">
+    </div>
+    <div class="field">
+        <label class="label">Category</label>
+        <div class="control">
+            <div class="select">
+                <select name="category">
+                    <option value="Social">Social</option>
+                    <option value="Landmark">Landmark</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Food and Dining">Food and Dining</option>
+                </select>
+            </div>
+        </div>
+    </div> 
+    <div class="field">
+        <label class="label">Description</label>
+        <input class="input" type="text" placeholder="Enter place description" name="description">
+    </div>
+
+    <button class="button is-link">Add Place</button>
+</form>
