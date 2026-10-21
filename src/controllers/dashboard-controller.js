@@ -1,41 +1,45 @@
 import { db } from "../models/db.js";
-import { PlaylistSpec } from "../models/joi-schemas.js";
+import { PlaceSpec } from "../models/joi-schemas.js";
 
 export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const playlists = await db.playlistStore.getUserPlaylists(loggedInUser._id);
+      const places = await db.placeStore.getUserPlaces(loggedInUser._id);
       const viewData = {
-        title: "Playtime Dashboard",
+        title: "Place Dashboard",
         user: loggedInUser,
-        playlists: playlists,
+        places: places,
       };
       return h.view("dashboard", viewData);
     },
   },
-  addPlaylist: {
+  addPlace: {
     validate: {
-      payload: PlaylistSpec,
+      payload: PlaceSpec,
       failAction: function (request, h, error) {
-        return h.view("dashboard", { title: "Error adding playlist", errors: error.details }).takeover().code(400);
+        return h.view("dashboard", { title: "Error adding place", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const newPlaylist = {
+      const newPlace = {
         userid: loggedInUser._id,
-        title: request.payload.title,
+        name: request.payload.name,
+        latitude: request.payload.latitude,
+        longitude: request.payload.longitude,
+        category: request.payload.category,
+        description: request.payload.description,
       };
-      await db.playlistStore.addPlaylist(newPlaylist);
+      await db.placeStore.addPlace(newPlace);
       return h.redirect("/dashboard");
     },
   },
 
-  deletePlaylist: {
+  deletePlace: {
     handler: async function (request, h) {
-      const playlist = await db.playlistStore.getPlaylistById(request.params.id);
-      await db.playlistStore.deletePlaylistById(playlist._id);
+      const place = await db.placeStore.getPlaceById(request.params.id);
+      await db.placeStore.deletePlaceById(place._id);
       return h.redirect("/dashboard");
     },
   },
