@@ -3,9 +3,12 @@ import { Place } from "./place.js";
 
 export const placeMongoStore = {
   async getAllPlaces() {
-    const places = await Place.find().lean();
-    return places;
-  },
+  // use mongoose populate to replace user id with name for public dashboard
+  // https://mongoosejs.com/docs/populate.html#field-selection
+  const places = await Place.find().populate("userid", "firstName lastName").lean();
+
+  return places;
+},
 
   async getPlaceById(id) {
     if (Mongoose.isValidObjectId(id)) {
