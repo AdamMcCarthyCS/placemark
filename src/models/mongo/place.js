@@ -8,6 +8,7 @@ const placeSchema = new Schema({
   longitude: Number,
   description: String,
   category: String,
+  eircode: String,
   userid: {
     type: Schema.Types.ObjectId,
     ref: "User",
