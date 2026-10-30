@@ -1,0 +1,25 @@
+  {{> menu active="private dashboard"}}
+
+<section class="section">
+    <div class="box">
+      <h1 class="title">{{place.name}}</h1>
+
+      <p class="subtitle">{{place.category}}</p>
+      <p>{{place.description}}</p>
+
+      <div class="content mt-2">
+        <p><strong>Latitude:</strong> {{place.latitude}}, <Strong>Longitude:</Strong> {{ place.longitude }} </p>
+        <p><strong>Eircode:</strong> {{place.eircode}}</p>
+        <p><strong>Coordinates:</strong>
+          {{place.latitude}}, {{place.longitude}}
+        </p>
+        <!-- Using mongoose populate fields -->
+        <p><strong>Added by:</strong>
+          {{place.userid.firstName}} {{place.userid.lastName}}
+        </p>
+      </div>
+
+        <a href="/dashboard/private" class="button">Back to My Places</a>
+       
+    </div>
+</section>

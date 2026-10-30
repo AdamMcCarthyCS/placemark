@@ -12,7 +12,7 @@ export const placeMongoStore = {
 
   async getPlaceById(id) {
     if (Mongoose.isValidObjectId(id)) {
-      const place = await Place.findOne({ _id: id }).lean();
+      const place = await Place.findOne({ _id: id }).populate("userid", "firstName lastName").lean();
       return place;
     }
     return null;
