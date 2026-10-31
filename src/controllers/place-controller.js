@@ -19,4 +19,12 @@ export const placeController = {
       });
     },
   },
+
+  deletePlace: {
+    handler: async function (request, h) {
+      const place = await db.placeStore.getPlaceById(request.params.id);
+      await db.placeStore.deletePlaceById(place._id);
+      return h.redirect("/dashboard/private");
+    },
+  },
 };

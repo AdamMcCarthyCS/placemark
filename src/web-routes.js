@@ -17,9 +17,10 @@ export const webRoutes = [
   { method: "GET", path: "/dashboard/public", config: dashboardController.publicDashboard},
   { method: "GET", path: "/about", config: aboutController.index },
   { method: "GET", path: "/playlist/{id}", config: playlistController.index },
-  { method: "GET", path: "/place/{id}/deletePlace", config: dashboardController.deletePlace },
   { method: "GET", path: "/playlist/{playlistId}/{trackId}/deleteTrack", config: playlistController.deleteTrack },
 
   { method: "POST", path: "/dashboard/addplace", config: dashboardController.addPlace },
   { method: "GET", path: "/place/{id}",config: placeController.details },
+  { method: "GET", path: "/place/{id}/deletePlace", config: placeController.deletePlace },
+
 ];
