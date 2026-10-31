@@ -1,5 +1,8 @@
+  {{#if isPublic}}
+  {{> menu active="public dashboard"}}
+  {{else}}
   {{> menu active="private dashboard"}}
-
+  {{/if}}
 <section class="section">
     <div class="box">
       <h1 class="title">{{place.name}}</h1>
@@ -18,8 +21,10 @@
           {{place.userid.firstName}} {{place.userid.lastName}}
         </p>
       </div>
-
+        {{#if isPublic}}
+        <a href="/dashboard/public" class="button">Back to Public Places</a>
+        {{else}}
         <a href="/dashboard/private" class="button">Back to My Places</a>
-       
+        {{/if}}
     </div>
 </section>
