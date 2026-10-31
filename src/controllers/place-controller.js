@@ -9,10 +9,13 @@ export const placeController = {
       if (!place) {
         return h.response("Place not found").code(404);
       }
+      // sets isPublic based on where route came from private or public button on list-pages.hbs
+      const isPublic = request.query.from === "public";
 
       return h.view("place-details", {
         title: place.name,
         place,
+        isPublic,
       });
     },
   },

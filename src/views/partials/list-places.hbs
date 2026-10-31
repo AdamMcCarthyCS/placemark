@@ -6,7 +6,8 @@
         </h2>
 
         <div class="is-flex is-align-items-center">
-            <a href="/place/{{_id}}" class="button">
+            <!-- public version of requesting details page (added?from=public query parameter) -->
+            <a href="/place/{{_id}}?from=public" class="button">
             <span class="icon">
                 <i class="fa-solid fa-circle-info fa-lg"></i>
             </span>
@@ -19,7 +20,8 @@
         <h2 class="title">
             {{name}} ({{category}})
         </h2>
-        <a href="/place/{{_id}}" class="button">
+        <!-- private version of request details page (added ?from=private query parameter) -->
+        <a href="/place/{{_id}}?from=private" class="button">
             <span class="icon">
                 <i class="fa-solid fa-circle-info fa-lg"></i>
             </span>
