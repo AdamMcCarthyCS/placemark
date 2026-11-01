@@ -1,0 +1,44 @@
+<form action="/place/{{place._id}}/editPlace" method="POST">
+    <div class="field">
+        <label class="label">Name</label>
+        <p>{{place.name}}</p>
+    </div>
+
+    <div class="field">
+        <label class="label">Latitude</label>
+        <input class="input" type="text" name="latitude" value="{{place.latitude}}">
+    </div>
+
+    <div class="field">
+        <label class="label">Longitude</label>
+        <input class="input" type="text" name="longitude" value="{{place.longitude}}">
+    </div>
+
+    <div class="field">
+        <label class="label">Eircode</label>
+        <input class="input" type="text" name="eircode" value="{{place.eircode}}">
+    </div>
+
+    <div class="field">
+        <label class="label">Category</label>
+        <div class="control">
+            <div class="select">
+                <select name="category">
+                    // selected option already chosen with https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/option#attributes
+                    <option value="Social" {{#if isSocial}}selected{{/if}}>Social</option>
+                    <option value="Landmark" {{#if isLandmark}}selected{{/if}}>Landmark</option>
+                    <option value="Shopping" {{#if isShopping}}selected{{/if}}>Shopping</option>
+                    <option value="Food and Dining" {{#if isFoodAndDining}}selected{{/if}}>Food and Dining</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Description</label>
+        <input class="input" type="text" name="description" value="{{place.description}}">
+    </div>
+
+    <button class="button is-link" type="submit">Save Changes</button>
+    <a href="/place/{{place._id}}" class="button">Cancel</a>
+</form>

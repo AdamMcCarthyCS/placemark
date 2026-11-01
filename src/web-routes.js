@@ -23,5 +23,7 @@ export const webRoutes = [
   { method: "GET", path: "/place/{id}",config: placeController.details },
   { method: "GET", path: "/place/{id}/deletePlace", config: placeController.deletePlace },
   { method: "POST", path: "/place/{id}/editPlace", config: placeController.editPlace },
+  { method: "GET", path: "/place/{id}/editPlace", config: placeController.showEditPlace }
+,
 
 ];
