@@ -26,6 +26,7 @@ export const dashboardController = {
       return h.view("view-only-dashboard", viewData);
     },
   },
+
   addPlace: {
     validate: {
       payload: PlaceSpec,
@@ -49,5 +50,5 @@ export const dashboardController = {
       return h.redirect("/dashboard/private");
     },
   },
-  
+
 };

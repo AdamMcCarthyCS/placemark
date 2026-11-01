@@ -22,5 +22,6 @@ export const webRoutes = [
   { method: "POST", path: "/dashboard/addplace", config: dashboardController.addPlace },
   { method: "GET", path: "/place/{id}",config: placeController.details },
   { method: "GET", path: "/place/{id}/deletePlace", config: placeController.deletePlace },
+  { method: "POST", path: "/place/{id}/editPlace", config: placeController.editPlace },
 
 ];
