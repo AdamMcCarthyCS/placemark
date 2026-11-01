@@ -9,6 +9,14 @@ export const PlaceSpec = {
   description: Joi.string().required(),
 }
 
+export const UpdatePlaceSpec = {
+  latitude: Joi.number().required(),
+  longitude: Joi.number().required(),
+  eircode: Joi.string().required(),
+  category: Joi.string().required(),
+  description: Joi.string().required(),
+}
+
 export const UserSpec = {
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
