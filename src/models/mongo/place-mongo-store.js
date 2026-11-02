@@ -18,6 +18,25 @@ export const placeMongoStore = {
     return null;
   },
 
+  async getPlacesByCategory(placeCategory) {
+    if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) {
+      const place = Place.find({category: placeCategory}).populate("userid", "firstName lastName").lean();
+      return place;
+      }
+      return null;
+    },
+ 
+  async getUserPlacesByCategory(userid, placeCategory) {
+    if (Mongoose.isValidObjectId(userid)) {
+      if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) { 
+        const place = Place.find({category: placeCategory, userid: userid}).populate("userid", "firstName lastName").lean();
+        return place;
+        }
+        return null;
+      }
+      return null;
+    },
+  
   async addPlace(place) {
     const newPlace = new Place(place);
     const placeObj = await newPlace.save();

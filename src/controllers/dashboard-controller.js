@@ -14,6 +14,11 @@ export const dashboardController = {
       return h.view("dashboard", viewData);
     },
   },
+
+  indexCategory: {
+    
+  },
+
   publicDashboard: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
