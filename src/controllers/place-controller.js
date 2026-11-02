@@ -55,7 +55,7 @@ export const placeController = {
       const editedPlace = {
         userid: loggedInUser._id,
         // same issue as TODO
-        name: place.userid.name,
+        name: place.name,
         latitude: request.payload.latitude,
         longitude: request.payload.longitude,
         eircode: request.payload.eircode,
