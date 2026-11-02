@@ -9,7 +9,10 @@ import { userMongoStore } from "./mongo/user-mongo-store.js";
 import { playlistMongoStore } from "./mongo/playlist-mongo-store.js";
 import { trackMongoStore } from "./mongo/track-mongo-store.js";
 
+import { placeMongoStore } from "./mongo/place-mongo-store.js"
+
 export const db = {
+  placeStore: null,
   userStore: null,
   playlistStore: null,
   trackStore: null,
@@ -22,8 +25,8 @@ export const db = {
         this.trackStore = trackJsonStore;
         break;
       case "mongo":
+        this.placeStore = placeMongoStore;
         this.userStore = userMongoStore;
-        this.playlistStore = playlistMongoStore;
         this.trackStore = trackMongoStore;
         connectMongo();
         break;

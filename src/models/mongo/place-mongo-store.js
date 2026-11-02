@@ -3,13 +3,16 @@ import { Place } from "./place.js";
 
 export const placeMongoStore = {
   async getAllPlaces() {
-    const places = await Place.find().lean();
-    return places;
-  },
+  // use mongoose populate to replace user id with name for public dashboard
+  // https://mongoosejs.com/docs/populate.html#field-selection
+  const places = await Place.find().populate("userid", "firstName lastName").lean();
+
+  return places;
+},
 
   async getPlaceById(id) {
     if (Mongoose.isValidObjectId(id)) {
-      const place = await Place.findOne({ _id: id }).lean();
+      const place = await Place.findOne({ _id: id }).populate("userid", "firstName lastName").lean();
       return place;
     }
     return null;
@@ -22,8 +25,8 @@ export const placeMongoStore = {
   },
 
   async getUserPlaces(id) {
-    const place = await Place.find({ userid: id }).lean();
-    return place;
+    const places = await Place.find({ userid: id }).lean();
+    return places;
   },
 
   async deletePlaceById(id) {
@@ -43,6 +46,7 @@ export const placeMongoStore = {
     placeDoc.name = updatedPlace.name;
     placeDoc.latitude = updatedPlace.latitude;
     placeDoc.longitude = updatedPlace.longitude;
+    placeDoc.eircode = updatedPlace.eircode;
     placeDoc.category = updatedPlace.category;
     placeDoc.description = updatedPlace.description;
     await placeDoc.save();

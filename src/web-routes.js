@@ -3,6 +3,7 @@ import { aboutController } from "./controllers/about-controller.js";
 import { mainController } from "./controllers/main-controller.js";
 import { playlistController } from "./controllers/playlist-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
+import { placeController } from "./controllers/place-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
@@ -12,12 +13,17 @@ export const webRoutes = [
   { method: "POST", path: "/register", config: accountsController.signup },
   { method: "POST", path: "/authenticate", config: accountsController.login },
 
-  { method: "GET", path: "/dashboard", config: dashboardController.index },
+  { method: "GET", path: "/dashboard/private", config: dashboardController.index },
+  { method: "GET", path: "/dashboard/public", config: dashboardController.publicDashboard},
   { method: "GET", path: "/about", config: aboutController.index },
   { method: "GET", path: "/playlist/{id}", config: playlistController.index },
-  { method: "GET", path: "/playlist/{id}/deletePlaylist", config: dashboardController.deletePlaylist },
   { method: "GET", path: "/playlist/{playlistId}/{trackId}/deleteTrack", config: playlistController.deleteTrack },
 
-  { method: "POST", path: "/dashboard/addplaylist", config: dashboardController.addPlaylist },
-  { method: "POST", path: "/playlist/{id}/addtrack", config: playlistController.addTrack },
+  { method: "POST", path: "/dashboard/addplace", config: dashboardController.addPlace },
+  { method: "GET", path: "/place/{id}",config: placeController.details },
+  { method: "GET", path: "/place/{id}/deletePlace", config: placeController.deletePlace },
+  { method: "POST", path: "/place/{id}/editPlace", config: placeController.editPlace },
+  { method: "GET", path: "/place/{id}/editPlace", config: placeController.showEditPlace }
+,
+
 ];
