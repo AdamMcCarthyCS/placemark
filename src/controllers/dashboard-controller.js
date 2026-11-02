@@ -5,7 +5,10 @@ export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const places = await db.placeStore.getUserPlaces(loggedInUser._id);
+      // eslint-disable-next-line prefer-destructuring
+      const category = request.query.category;
+      const places = category ? await db.placeStore.getUserPlacesByCategory(loggedInUser._id, category) : 
+        await db.placeStore.getUserPlaces(loggedInUser._id);
       const viewData = {
         title: "Place Dashboard",
         user: loggedInUser,
@@ -15,14 +18,13 @@ export const dashboardController = {
     },
   },
 
-  indexCategory: {
-    
-  },
-
   publicDashboard: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const places = await db.placeStore.getAllPlaces();
+      // eslint-disable-next-line prefer-destructuring
+      const category = request.query.category;
+      const places = category ? await db.placeStore.getPlacesByCategory(category) : 
+        await db.placeStore.getAllPlaces();
       const viewData = {
         title: "Place Dashboard",
         user: loggedInUser,
