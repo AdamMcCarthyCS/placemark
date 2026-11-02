@@ -1,0 +1,28 @@
+  {{#if isPublic}}
+  {{> menu active="public dashboard"}}
+  {{else}}
+  {{> menu active="private dashboard"}}
+  {{/if}}
+<section class="section">
+    <div class="box">
+      <h1 class="title">{{place.name}}</h1>
+
+      <p class="subtitle">{{place.category}}</p>
+      <p>{{place.description}}</p>
+
+      <div class="content mt-2">
+        <p><strong>Latitude:</strong> {{place.latitude}}, <Strong>Longitude:</Strong> {{ place.longitude }} </p>
+        <p><strong>Eircode:</strong> {{place.eircode}}</p>
+        <!-- Using mongoose populate fields -->
+        <p><strong>Added by:</strong>
+          {{place.userid.firstName}} {{place.userid.lastName}}
+        </p>
+      </div>
+        {{#if isPublic}}
+        <a href="/dashboard/public" class="button">Back to Public Places</a>
+        {{else}}
+        <a href="/dashboard/private" class="button">Back to My Places</a>
+        <a href="/place/{{place._id}}/editPlace" class="button">Edit Place</a>
+        {{/if}}
+    </div>
+</section>
