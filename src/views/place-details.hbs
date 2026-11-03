@@ -1,4 +1,6 @@
-  {{#if isPublic}}
+  {{#if isAdmin }}
+  {{> admin-menu active="places"}}
+  {{else if isPublic}}
   {{> menu active="public dashboard"}}
   {{else}}
   {{> menu active="private dashboard"}}
@@ -19,8 +21,8 @@
         </p>
       </div>
         {{#if isAdmin}}
-        <a href="/dashboard/public" class="button">Back to My Places</a>
-        <a href="/place/{{place._id}}/editPlace" class="button">Edit Place</a>
+        <a href="/dashboard/public" class="button">Back to Places</a>
+        <a href="/place/{{place._id}}/editPlace?from=admin" class="button">Edit Place</a>
         {{else if isPublic}}
         <a href="/dashboard/public" class="button">Back to Public Places</a>
         {{else}}
