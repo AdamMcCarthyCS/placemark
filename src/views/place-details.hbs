@@ -18,10 +18,13 @@
           {{place.userid.firstName}} {{place.userid.lastName}}
         </p>
       </div>
-        {{#if isPublic}}
+        {{#if isAdmin}}
+        <a href="/dashboard/public" class="button">Back to My Places</a>
+        <a href="/place/{{place._id}}/editPlace" class="button">Edit Place</a>
+        {{else if isPublic}}
         <a href="/dashboard/public" class="button">Back to Public Places</a>
         {{else}}
-        <a href="/dashboard/private" class="button">Back to My Places</a>
+        <a href="/dashboard/private" class="button">Back to Places</a>
         <a href="/place/{{place._id}}/editPlace" class="button">Edit Place</a>
         {{/if}}
     </div>
