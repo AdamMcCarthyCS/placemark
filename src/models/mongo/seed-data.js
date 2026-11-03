@@ -6,18 +6,28 @@ export const seedData = {
       lastName: "Ronan",
       email: "saoirse.ronan@example.com",
       password: "secret",
+      role: "user",
     },
     cillian: {
       firstName: "Cillian",
       lastName: "Murphy",
       email: "cillian.murphy@example.com",
       password: "secret",
+      role: "user",
     },
     katie: {
       firstName: "Katie",
       lastName: "Taylor",
       email: "katie.taylor@example.com",
       password: "secret",
+      role: "user",
+    },
+    admin: {
+      firstName: "Admin",
+      lastName: "User",
+      email: "admin@example.com",
+      password: "secret",
+      role: "admin",
     },
   },
 
