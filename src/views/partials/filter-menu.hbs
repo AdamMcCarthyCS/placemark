@@ -1,7 +1,7 @@
 <div class="buttons">
-  <button type="button" class="button">All</button>
-  <button type="button" class="button">Social</button>
-  <button type="button" class="button">Shopping</button>
-  <button type="button" class="button">Food and Dining</button>
-  <button type="button" class="button">Landmark</button>
+  <a href="/dashboard/{{#if isPublic}}public{{else}}private{{/if}}" class="button">All</a>
+  <a href="/dashboard/{{#if isPublic}}public{{else}}private{{/if}}?category=Social" class="button">Social</a>
+  <a href="/dashboard/{{#if isPublic}}public{{else}}private{{/if}}?category=Shopping" class="button">Shopping</a>
+  <a href="/dashboard/{{#if isPublic}}public{{else}}private{{/if}}?category=Food%20and%20Dining" class="button">Food and Dining</a>
+  <a href="/dashboard/{{#if isPublic}}public{{else}}private{{/if}}?category=Landmark" class="button">Landmark</a>
 </div>
