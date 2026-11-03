@@ -24,8 +24,12 @@ export const placeController = {
 
   deletePlace: {
     handler: async function (request, h) {
+      const isAdmin = request.auth.credentials.role === "admin";
       const place = await db.placeStore.getPlaceById(request.params.id);
       await db.placeStore.deletePlaceById(place._id);
+      if (isAdmin) {
+        return h.redirect("/dashboard/public")
+      }
       return h.redirect("/dashboard/private");
     },
   },
