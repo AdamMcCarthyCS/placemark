@@ -11,11 +11,13 @@ export const placeController = {
       }
       // sets isPublic based on where route came from private or public button on list-pages.hbs
       const isPublic = request.query.from === "public";
+      const isAdmin = request.query.from === "admin";
 
       return h.view("place-details", {
         title: place.name,
         place,
         isPublic,
+        isAdmin,
       });
     },
   },

@@ -29,6 +29,7 @@ export const dashboardController = {
         title: "Place Dashboard",
         user: loggedInUser,
         places: places,
+        admin: loggedInUser.role === "admin",
       };
       return h.view("view-only-dashboard", viewData);
     },
