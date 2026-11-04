@@ -4,6 +4,7 @@ import { mainController } from "./controllers/main-controller.js";
 import { playlistController } from "./controllers/playlist-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { placeController } from "./controllers/place-controller.js";
+import { adminController } from "./controllers/admin-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
@@ -23,7 +24,8 @@ export const webRoutes = [
   { method: "GET", path: "/place/{id}",config: placeController.details },
   { method: "GET", path: "/place/{id}/deletePlace", config: placeController.deletePlace },
   { method: "POST", path: "/place/{id}/editPlace", config: placeController.editPlace },
-  { method: "GET", path: "/place/{id}/editPlace", config: placeController.showEditPlace }
-,
+  { method: "GET", path: "/place/{id}/editPlace", config: placeController.showEditPlace },
+
+  { method: "GET", path: "/admin/info", config: adminController.info }
 
 ];
