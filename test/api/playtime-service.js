@@ -31,35 +31,35 @@ export const playtimeService = {
 
 
 
-  async createPlaylist(playlist) {
-    const res = await axios.post(`${this.playtimeUrl}/api/playlists`, playlist);
+  async createPlace(place) {
+    const res = await axios.post(`${this.playtimeUrl}/api/places`, place);
     return res.data;
   },
 
-  async getPlaylist(id) {
-    const res = await axios.get(`${this.playtimeUrl}/api/playlists/${id}`);
+  async getPlace(id) {
+    const res = await axios.get(`${this.playtimeUrl}/api/places/${id}`);
     return res.data;
   },
 
-  async getAllPlaylists() {
-    const res = await axios.get(`${this.playtimeUrl}/api/playlists`);
+  async getAllPlaces() {
+    const res = await axios.get(`${this.playtimeUrl}/api/places`);
     return res.data;
   },
 
-  async deletePlaylist(id) {
-    const res = await axios.delete(`${this.playtimeUrl}/api/playlists/${id}`);
+  async deletePlace(id) {
+    const res = await axios.delete(`${this.playtimeUrl}/api/places/${id}`);
     return res;
   },
 
-  async deleteAllPlaylists() {
-    const res = await axios.delete(`${this.playtimeUrl}/api/playlists`);
+  async deleteAllPlaces() {
+    const res = await axios.delete(`${this.playtimeUrl}/api/places`);
     return res.data;
   },
 
 
 
-  async createTrack(playlistId, track) {
-    const res = await axios.post(`${this.playtimeUrl}/api/tracks`, { playlistId, track });
+  async createTrack(placeId, track) {
+    const res = await axios.post(`${this.playtimeUrl}/api/tracks`, { placeId, track });
     return res.data;
   },
 
