@@ -6,7 +6,7 @@ import { db } from "../../src/models/db.js"
 
 suite("Place API tests", () => {
   setup(async () => {
-    db.init("json")
+    db.init("mongo")
     await playtimeService.deleteAllPlaces();
     await playtimeService.deleteAllUsers();
     const user = await playtimeService.createUser(maggie);
