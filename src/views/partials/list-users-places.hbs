@@ -1,0 +1,48 @@
+<div class="section-box">
+    <table class="table is-fullwidth is-bordered mt-5">
+      {{#each users}}
+      <tbody>
+          <tr>
+              <th>User</th>
+              <th>Email</th>
+          </tr>
+          <tr>
+              <td>{{firstName}} {{lastName}}</td>
+              <td>{{email}}</td>
+          </tr>
+      </tbody>
+
+      <tbody>
+        <tr>
+            <th>User Places</th>
+            <th>Category</th>
+        </tr>
+        {{#each places}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{category}}</td>
+        </tr>
+        <!-- else statement runs only when place list is empty (admin or no added user places) -->
+        {{else}}
+        <tr>
+            <td colspan="2">This user has no places</td>
+        </tr>
+        {{/each}}
+        <!-- unless helper renders this block if its argument is falsy (not last). inverse of if statement
+         docs: https://handlebarsjs.com/guide/builtin-helpers.html#unless
+         combine with @last which is true if it is the last place (hence doesnt render) 
+         docs: https://handlebarsjs.com/api-reference/data-variables.html#last
+         -->
+        {{#unless @last}}
+        <tr>
+            <td colspan="2" class="py-5"></td>
+        </tr>
+        {{/unless}}
+      </tbody>
+      {{/each}}
+    </table>
+</div>
+
+<br>
+<p class="is-size-4">Total user count: {{totalUserCount}}</p>
+<p class="is-size-4">Total place count: {{totalPlaceCount}}</p>

@@ -55,7 +55,10 @@ export const accountsController = {
         return h.redirect("/");
       }
       request.cookieAuth.set({ id: user._id });
-      return h.redirect("/dashboard/private");
+      if (user.role === "admin") {
+        return h.redirect("/dashboard/public");
+      }
+      return h.redirect("/dashboard/private")
     },
   },
 

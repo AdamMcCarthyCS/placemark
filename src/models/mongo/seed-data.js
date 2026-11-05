@@ -6,18 +6,28 @@ export const seedData = {
       lastName: "Ronan",
       email: "saoirse.ronan@example.com",
       password: "secret",
+      role: "user",
     },
     cillian: {
       firstName: "Cillian",
       lastName: "Murphy",
       email: "cillian.murphy@example.com",
       password: "secret",
+      role: "user",
     },
     katie: {
       firstName: "Katie",
       lastName: "Taylor",
       email: "katie.taylor@example.com",
       password: "secret",
+      role: "user",
+    },
+    admin: {
+      firstName: "Admin",
+      lastName: "User",
+      email: "admin@example.com",
+      password: "secret",
+      role: "admin",
     },
   },
 
@@ -30,7 +40,6 @@ export const seedData = {
       latitude: 52.6508,
       longitude: -7.2492,
       eircode: "R95 YRK1",
-      locationArea: "Kilkenny City",
       userid: "->users.saoirse",
     },
     stCanicesCathedral: {
@@ -40,7 +49,6 @@ export const seedData = {
       latitude: 52.6553,
       longitude: -7.2561,
       eircode: "R95 V63H",
-      locationArea: "Kilkenny City",
       userid: "->users.cillian",
     },
     smithwicksExperience: {
@@ -50,7 +58,6 @@ export const seedData = {
       latitude: 52.6545,
       longitude: -7.2518,
       eircode: "R95 VK54",
-      locationArea: "Kilkenny City",
       userid: "->users.katie",
     },
     rotheHouse: {
@@ -60,7 +67,6 @@ export const seedData = {
       latitude: 52.654,
       longitude: -7.2544,
       eircode: "R95 P89C",
-      locationArea: "Kilkenny City",
       userid: "->users.saoirse",
     },
     jerpointAbbey: {
@@ -70,7 +76,6 @@ export const seedData = {
       latitude: 52.5154,
       longitude: -7.1567,
       eircode: "R95 P523",
-      locationArea: "County Kilkenny",
       userid: "->users.cillian",
     },
     dunmoreCave: {
@@ -80,7 +85,6 @@ export const seedData = {
       latitude: 52.7352,
       longitude: -7.1958,
       eircode: "R95 A972",
-      locationArea: "County Kilkenny",
       userid: "->users.katie",
     },
     kilfaneGlen: {
@@ -90,7 +94,6 @@ export const seedData = {
       latitude: 52.519,
       longitude: -7.1704,
       eircode: "R95 RXO5",
-      locationArea: "County Kilkenny",
       userid: "->users.saoirse",
     },
     kellsPriory: {
@@ -100,7 +103,6 @@ export const seedData = {
       latitude: 52.5391,
       longitude: -7.2815,
       eircode: "R95 V184",
-      locationArea: "County Kilkenny",
       userid: "->users.cillian",
     },
     holeInTheWall: {
@@ -110,7 +112,6 @@ export const seedData = {
       latitude: 52.6535,
       longitude: -7.25,
       eircode: "R95 TY30",
-      locationArea: "Kilkenny City",
       userid: "->users.katie",
     },
     kytelersInn: {
@@ -120,7 +121,6 @@ export const seedData = {
       latitude: 52.6543,
       longitude: -7.253,
       eircode: "R95 RP40",
-      locationArea: "Kilkenny City",
       userid: "->users.saoirse",
     },
     leftBank: {
@@ -130,7 +130,6 @@ export const seedData = {
       latitude: 52.6508,
       longitude: -7.251,
       eircode: "R95 HY09",
-      locationArea: "Kilkenny City",
       userid: "->users.cillian",
     },
     campagne: {
@@ -140,7 +139,6 @@ export const seedData = {
       latitude: 52.6531,
       longitude: -7.2462,
       eircode: "R95 X092",
-      locationArea: "Kilkenny City",
       userid: "->users.katie",
     },
     cafeLaCoco: {
@@ -150,7 +148,6 @@ export const seedData = {
       latitude: 52.6531,
       longitude: -7.2519,
       eircode: "R95 YV6X",
-      locationArea: "Kilkenny City",
       userid: "->users.saoirse",
     },
     marketCrossShoppingCentre: {
@@ -160,7 +157,6 @@ export const seedData = {
       latitude: 52.6534,
       longitude: -7.2534,
       eircode: "R95 V32A",
-      locationArea: "Kilkenny City",
       userid: "->users.cillian",
     },
     macdonaghJunction: {
@@ -170,7 +166,6 @@ export const seedData = {
       latitude: 52.6572,
       longitude: -7.2474,
       eircode: "R95 W8RH",
-      locationArea: "Kilkenny City",
       userid: "->users.katie",
     },
     nationalDesignCraftGallery: {
@@ -180,7 +175,6 @@ export const seedData = {
       latitude: 52.649907,
       longitude: -7.249555,
       eircode: "R95 CAA6",
-      locationArea: "Kilkenny City",
       userid: "->users.saoirse",
     },
     cushendaleWoollenMills: {
@@ -190,7 +184,6 @@ export const seedData = {
       latitude: 52.5411,
       longitude: -6.9575,
       eircode: "R95 PP83",
-      locationArea: "County Kilkenny",
       userid: "->users.cillian",
     },
   },

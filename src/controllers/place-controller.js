@@ -11,19 +11,25 @@ export const placeController = {
       }
       // sets isPublic based on where route came from private or public button on list-pages.hbs
       const isPublic = request.query.from === "public";
+      const isAdmin = request.auth.credentials.role === "admin";
 
       return h.view("place-details", {
         title: place.name,
         place,
         isPublic,
+        isAdmin,
       });
     },
   },
 
   deletePlace: {
     handler: async function (request, h) {
+      const isAdmin = request.auth.credentials.role === "admin";
       const place = await db.placeStore.getPlaceById(request.params.id);
       await db.placeStore.deletePlaceById(place._id);
+      if (isAdmin) {
+        return h.redirect("/dashboard/public")
+      }
       return h.redirect("/dashboard/private");
     },
   },
@@ -38,7 +44,6 @@ export const placeController = {
     },
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-
       // get original place to use id and its name
       const place = await db.placeStore.getPlaceById(request.params.id);
 
@@ -48,7 +53,7 @@ export const placeController = {
       }
 
       // this is another result of mongoose.populate "place.userid._id"
-      if (place.userid._id.toString() !== loggedInUser._id.toString()) {
+      if (place.userid._id.toString() !== loggedInUser._id.toString() && loggedInUser.role !== "admin") {
         return h.response("Unauthorized").code(403)
       }
 
@@ -82,9 +87,11 @@ export const placeController = {
     const isShopping = place.category === "Shopping";
     const isFoodAndDining = place.category === "Food and Dining";
 
-    if (place.userid._id.toString() !== loggedInUser._id.toString()) {
+    if (place.userid._id.toString() !== loggedInUser._id.toString() && loggedInUser.role !== "admin") {
       return h.response("Forbidden").code(403);
     }
+    
+    const fromAdmin = request.query.from === "admin";
 
     return h.view("place-edit", {
       title: `Edit ${place.name}`,
@@ -92,7 +99,8 @@ export const placeController = {
       isSocial,
       isLandmark,
       isShopping,
-      isFoodAndDining
+      isFoodAndDining,
+      fromAdmin,
     });
   },
 },

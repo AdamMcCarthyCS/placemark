@@ -7,12 +7,15 @@ import { assertSubset } from "../test-utils.js";
 EventEmitter.setMaxListeners(25);
 
 suite("User Model Tests", () => {
+  // eslint-disable-next-line prefer-const
+  let seededUsers = Array(testUsers.length)
+  db.init("mongo");
   setup(async () => {
-    db.init("mongo");
+    
     await db.userStore.deleteAll();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testUsers[i] = await db.userStore.addUser(testUsers[i]);
+      seededUsers[i] = await db.userStore.addUser(testUsers[i]);
     }
   });
 
@@ -39,11 +42,11 @@ suite("User Model Tests", () => {
   });
 
   test("delete one user - success", async () => {
-    await db.userStore.deleteUserById(testUsers[0]._id);
+    await db.userStore.deleteUserById(seededUsers[0]._id);
     const returnedUsers = await db.userStore.getAllUsers();
-    assert.equal(returnedUsers.length, testUsers.length - 1);
+    assert.equal(returnedUsers.length, seededUsers.length - 1);
 
-    const deletedUser = await db.userStore.getUserById(testUsers[0]._id);
+    const deletedUser = await db.userStore.getUserById(seededUsers[0]._id);
     assert.isNull(deletedUser);
   });
 
@@ -66,6 +69,6 @@ suite("User Model Tests", () => {
   test("delete one user - fail", async () => {
     await db.userStore.deleteUserById("bad-id");
     const allUsers = await db.userStore.getAllUsers();
-    assert.equal(testUsers.length, allUsers.length);
+    assert.equal(seededUsers.length, allUsers.length);
   });
 });
