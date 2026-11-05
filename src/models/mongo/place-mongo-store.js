@@ -48,10 +48,21 @@ export const placeMongoStore = {
       return null;
     },
  
-  async getUserPlacesByCategory(userid, placeCategory) {
+  async getUserPlacesByCategoryWithUser(userid, placeCategory) {
     if (Mongoose.isValidObjectId(userid)) {
       if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) { 
         const place = Place.find({category: placeCategory, userid: userid}).populate("userid", "firstName lastName").lean();
+        return place;
+        }
+        return null;
+      }
+      return null;
+    },
+
+    async getUserPlacesByCategory(userid, placeCategory) {
+    if (Mongoose.isValidObjectId(userid)) {
+      if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) { 
+        const place = Place.find({category: placeCategory, userid: userid}).lean();
         return place;
         }
         return null;
