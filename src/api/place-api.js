@@ -14,6 +14,17 @@ export const placeApi = {
     },
   },
 
+    findByUser: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        return await db.placeStore.getUserPlaces(request.params.userid);
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+  },
+
   create: {
     auth: false,
     handler: async function (request, h) {
