@@ -1,4 +1,8 @@
-{{> menu active="public dashboard"}}
+{{#if admin}}
+    {{> admin-menu active="places"}}
+{{else}}
+    {{> menu active="public dashboard"}}
+{{/if}}
 
 <section class="section">
     {{> filter-menu isPublic=true}}

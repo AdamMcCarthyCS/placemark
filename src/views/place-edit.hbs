@@ -1,4 +1,4 @@
-<form action="/place/{{place._id}}/editPlace" method="POST">
+<form action="/place/{{place._id}}/editPlace{{#if fromAdmin}}?from=admin{{/if}}" method="POST">
     <div class="field">
         <label class="label">Name</label>
         <p>{{place.name}}</p>
@@ -40,5 +40,5 @@
     </div>
 
     <button class="button is-link" type="submit">Save Changes</button>
-    <a href="/place/{{place._id}}" class="button">Cancel</a>
+    <a href="/place/{{place._id}}{{#if fromAdmin}}?from=admin{{/if}}" class="button">Cancel</a>
 </form>
