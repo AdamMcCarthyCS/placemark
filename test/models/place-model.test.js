@@ -29,19 +29,8 @@ suite("Place Model Tests", () => {
 
   test("create a place", async () => {
     const newPlace = await db.placeStore.addPlace(place);
-    // side effect of displaying user names with places on dashboard
-    // the mongoose populate method is called on getPlacesById in addPlace
-    // hence the test must be modified to suit the return type
-    // in this program flow
     assertSubset(
-      {
-        ...place,
-        userid: {
-          _id: place.userid,
-          firstName: maggie.firstName,
-          lastName: maggie.lastName,
-        },
-      },
+      place,
       newPlace,
     );
   });

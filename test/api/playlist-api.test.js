@@ -1,69 +1,69 @@
 import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
-import { maggie, playlist, testPlaylists } from "../fixtures.js";
+import { maggie, place, testPlaces } from "../fixtures.js";
 import { db } from "../../src/models/db.js"
 
-suite("Playlist API tests", () => {
+suite("Place API tests", () => {
   setup(async () => {
     db.init("json")
-    await playtimeService.deleteAllPlaylists();
+    await playtimeService.deleteAllPlaces();
     await playtimeService.deleteAllUsers();
     const user = await playtimeService.createUser(maggie);
-    playlist.userid = user._id
+    place.userid = user._id
   });
 
   teardown(async () => {});
 
-  test("create a playlist", async () => {
-    const newPlaylist = await playtimeService.createPlaylist(playlist);
-    assertSubset(playlist, newPlaylist);
-    assert.isDefined(newPlaylist._id);
+  test("create a place", async () => {
+    const newPlace = await playtimeService.createPlace(place);
+    assertSubset(place, newPlace);
+    assert.isDefined(newPlace._id);
   });
 
-  test("get a playlist - success", async () => {
-    const originalPlaylist = await playtimeService.createPlaylist(playlist);
-    const returnedPlaylist = await playtimeService.getPlaylist(originalPlaylist._id);
-    assertSubset(originalPlaylist, returnedPlaylist);
+  test("get a place - success", async () => {
+    const originalPlace = await playtimeService.createPlace(place);
+    const returnedPlace = await playtimeService.getPlace(originalPlace._id);
+    assertSubset(originalPlace, returnedPlace);
   });
 
-  test("delete one playlist", async () => {
-    const newPlaylist = await playtimeService.createPlaylist(playlist);
-    await playtimeService.deletePlaylist(newPlaylist._id);
+  test("delete one place", async () => {
+    const newPlace = await playtimeService.createPlace(place);
+    await playtimeService.deletePlace(newPlace._id);
     try {
-      await playtimeService.getPlaylist(newPlaylist._id);
+      await playtimeService.getPlace(newPlace._id);
       assert.fail("Should not return a response")
     } catch (error) {
-      assert(error.response.data.message === "No playlist with this id");
+      assert(error.response.data.message === "No place with this id");
       assert.equal(error.response.data.statusCode, 404);
     }
   });
 
-  test("delete all playlists", async () => {
-    for (let i = 0; i < testPlaylists.length; i += 1) {
+  test("delete all places", async () => {
+    for (let i = 0; i < testPlaces.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testPlaylists[i] = await playtimeService.createPlaylist(testPlaylists[i]);
+      testPlaces[i] = await playtimeService.createPlace(testPlaces[i]);
     }
-    let returnedPlaylists = await playtimeService.getAllPlaylists();
-    assert.equal(returnedPlaylists.length, 3);
-    await playtimeService.deleteAllPlaylists();
-    returnedPlaylists = await playtimeService.getAllPlaylists();
-    assert.equal(returnedPlaylists.length, 0);
+    let returnedPlaces = await playtimeService.getAllPlaces();
+    assert.equal(returnedPlaces.length, 3);
+    await playtimeService.deleteAllPlaces();
+    returnedPlaces = await playtimeService.getAllPlaces();
+    assert.equal(returnedPlaces.length, 0);
   });
 
-  test("get a playlist bad id - fail", async () => {
+  test("get a place bad id - fail", async () => {
     try {
-      const returnedPlaylist = await playtimeService.getPlaylist("1234");
+      const returnedPlace = await playtimeService.getPlace("1234");
       assert.fail("Should not return a response");
     } catch (error) {
-      assert(error.response.data.message === "No playlist with this id");
+      assert(error.response.data.message === "No place with this id");
     }
   });
 
-  test("get a playlist deleted playlist fail", async () => {
-    await playtimeService.deleteAllPlaylists();
+  test("get a place deleted place fail", async () => {
+    await playtimeService.deleteAllPlaces();
     try {
-      const returnedPlaylist = await playtimeService.getPlaylist(testPlaylists[0]._id);
+      const returnedPlace = await playtimeService.getPlace(testPlaces[0]._id);
       assert.fail("Should not return a response");
     } catch (error) {
       assert.equal(error.response.status, 404);
