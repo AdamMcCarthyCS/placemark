@@ -25,6 +25,21 @@ export const placeApi = {
     },
   },
 
+    findByCategory: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        const places = await db.placeStore.getPlacesByCategory(request.params.category);
+        if (!places) {
+          return Boom.badRequest("Invalid place category");
+        }
+        return places;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+  },
+
   create: {
     auth: false,
     handler: async function (request, h) {

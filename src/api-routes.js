@@ -14,4 +14,6 @@ export const apiRoutes = [
   { method: "DELETE", path: "/api/places", config: placeApi.deleteAll },
   { method: "DELETE", path: "/api/places/{id}", config: placeApi.deleteOne },
   { method: "GET", path: "/api/places/user/{userid}", config: placeApi.findByUser },
+  { method: "GET", path: "/api/places/category/{category}", config: placeApi.findByCategory },
 ];
+
