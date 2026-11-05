@@ -1,77 +1,72 @@
 export const maggie = {
   firstName: "Maggie",
-  lastName: "Simpson",
-  email: "maggie@simpson.com",
+  lastName: "Smith",
+  email: "maggie.smith@test.example",
   password: "secret",
+  role: "user",
 };
 
 export const testUsers = [
   {
-    firstName: "Homer",
-    lastName: "Simpson",
-    email: "homer@simpson.com",
+    firstName: "Hozier",
+    lastName: "Byrne",
+    email: "hozier.byrne@test.example",
     password: "secret",
+    role: "user",
   },
-
   {
-    firstName: "Marge",
-    lastName: "Simpson",
-    email: "marge@simpson.com",
+    firstName: "Enya",
+    lastName: "Brennan",
+    email: "enya.brennan@test.example",
     password: "secret",
+    role: "user",
   },
-
   {
-    firstName: "Bart",
-    lastName: "Simpson",
-    email: "bart@simpson.com",
+    firstName: "Rory",
+    lastName: "McIlroy",
+    email: "rory.mcilroy@test.example",
     password: "secret",
+    role: "user",
   },
 ];
 
-export const playlist = {
+export const place = {
   userid: "61b2a82584224bf7bcdb9423",
-  title: "Late Night Drive",
-  tracks: [],
+  name: "Black Abbey",
+  description: "A historic Dominican church in Kilkenny City.",
+  category: "Landmark",
+  latitude: 52.6537,
+  longitude: -7.2566,
+  eircode: "R95 VHY1",
 };
 
-export const testPlaylists = [
+export const testPlaces = [
   {
     userid: "61b2a82584224bf7bcdb9423",
-    title: "Test Playlist",
-    tracks: [],
+    name: "Butler Gallery",
+    description: "An art gallery in the former Evans' Home building.",
+    category: "Landmark",
+    latitude: 52.6525,
+    longitude: -7.2505,
+    eircode: "R95 XW50",
   },
   {
     userid: "61b2a82584224bf7bcdb9423",
-    title: "Workout Mix",
+    name: "Dunmore Park",
+    description: "A public park and woodland area in Kilkenny.",
+    category: "Park",
+    latitude: 52.668,
+    longitude: -7.206,
+    eircode: "R95 TEST",
   },
   {
     userid: "61b2a82584224bf7bcdb9423",
-    title: "Chill Evening",
-    tracks: [],
-  },
-];
-
-export const track = {
-  title: "Missing",
-  artist: "Everything But The Girl",
-  duration: 4.06,
-};
-
-export const testTracks = [
-  {
-    title: "Sunchime",
-    artist: "Dario G",
-    duration: 5.24,
-  },
-  {
-    title: "Around the World",
-    artist: "Daft Punk",
-    duration: 7.09,
-  },
-  {
-    title: "Midnight City",
-    artist: "M83",
-    duration: 4.03,
+    name: "Gowran Park Racecourse",
+    description: "A racecourse near the village of Gowran.",
+    category: "Recreation",
+    latitude: 52.629,
+    longitude: -7.066,
+    eircode: "R95 MOCK",
   },
 ];
 
