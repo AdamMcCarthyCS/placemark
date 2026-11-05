@@ -8,7 +8,13 @@ export const placeMongoStore = {
   const places = await Place.find().populate("userid", "firstName lastName").lean();
 
   return places;
-},
+  },
+
+    async getAllPlacesWithUser() {
+    const places = await Place.find().lean();
+
+    return places;
+  },
 
   async getPlaceById(id) {
     if (Mongoose.isValidObjectId(id)) {
