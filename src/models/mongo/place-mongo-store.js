@@ -26,9 +26,17 @@ export const placeMongoStore = {
     return null;
   },
 
-  async getPlacesByCategory(placeCategory) {
+  async getPlacesByCategoryWithUser(placeCategory) {
     if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) {
       const place = Place.find({category: placeCategory}).populate("userid", "firstName lastName").lean();
+      return place;
+      }
+      return null;
+    },
+
+  async getPlacesByCategory(placeCategory) {
+    if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) {
+      const place = Place.find({category: placeCategory}).lean();
       return place;
       }
       return null;

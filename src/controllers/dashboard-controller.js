@@ -23,7 +23,7 @@ export const dashboardController = {
       const loggedInUser = request.auth.credentials;
       // eslint-disable-next-line prefer-destructuring
       const category = request.query.category;
-      const places = category ? await db.placeStore.getPlacesByCategory(category) : 
+      const places = category ? await db.placeStore.getPlacesByCategoryWithUser(category) : 
         await db.placeStore.getAllPlaces();
       const viewData = {
         title: "Place Dashboard",
