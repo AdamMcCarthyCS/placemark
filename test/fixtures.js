@@ -1,7 +1,7 @@
 export const maggie = {
   firstName: "Maggie",
   lastName: "Smith",
-  email: "maggie.smith@test.example",
+  email: "maggie.smith@test.com",
   password: "secret",
   role: "user",
 };
@@ -10,21 +10,21 @@ export const testUsers = [
   {
     firstName: "Hozier",
     lastName: "Byrne",
-    email: "hozier.byrne@test.example",
+    email: "hozier.byrne@test.com",
     password: "secret",
     role: "user",
   },
   {
     firstName: "Enya",
     lastName: "Brennan",
-    email: "enya.brennan@test.example",
+    email: "enya.brennan@test.com",
     password: "secret",
     role: "user",
   },
   {
     firstName: "Rory",
     lastName: "McIlroy",
-    email: "rory.mcilroy@test.example",
+    email: "rory.mcilroy@test.com",
     password: "secret",
     role: "user",
   },
