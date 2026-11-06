@@ -1,10 +1,9 @@
 import { dashboardController } from "./controllers/dashboard-controller.js";
 import { aboutController } from "./controllers/about-controller.js";
 import { mainController } from "./controllers/main-controller.js";
-import { playlistController } from "./controllers/playlist-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
-import { placeController } from "./controllers/place-controller.js";
 import { adminController } from "./controllers/admin-controller.js";
+import { placeController } from "./controllers/place-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
@@ -17,8 +16,6 @@ export const webRoutes = [
   { method: "GET", path: "/dashboard/private", config: dashboardController.index },
   { method: "GET", path: "/dashboard/public", config: dashboardController.publicDashboard},
   { method: "GET", path: "/about", config: aboutController.index },
-  { method: "GET", path: "/playlist/{id}", config: playlistController.index },
-  { method: "GET", path: "/playlist/{playlistId}/{trackId}/deleteTrack", config: playlistController.deleteTrack },
 
   { method: "POST", path: "/dashboard/addplace", config: dashboardController.addPlace },
   { method: "GET", path: "/place/{id}",config: placeController.details },
