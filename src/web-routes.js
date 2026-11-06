@@ -26,6 +26,9 @@ export const webRoutes = [
   { method: "POST", path: "/place/{id}/editPlace", config: placeController.editPlace },
   { method: "GET", path: "/place/{id}/editPlace", config: placeController.showEditPlace },
 
-  { method: "GET", path: "/admin/info", config: adminController.info }
+  { method: "GET", path: "/admin/info", config: adminController.info },
+
+  // allow wildcards to support image names
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } }
 
 ];
