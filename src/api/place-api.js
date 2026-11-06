@@ -1,5 +1,7 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { PlaceArraySpec, PlaceSpecPlus, IdSpec } from "../models/joi-schemas.js"
+import { validationError } from "./logger.js"
 
 export const placeApi = {
   find: {
@@ -12,6 +14,10 @@ export const placeApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    response: { schema: PlaceArraySpec, failAction: validationError },
+    description: "Get all places",
+    notes: "Returns all places",
   },
 
     findByUser: {
@@ -23,6 +29,11 @@ export const placeApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    response: { schema: PlaceArraySpec, failAction: validationError },
+    validate: { params: { id: IdSpec }, failAction: validationError },
+    description: "Get all a users places",
+    notes: "Returns all a users places based on their userid",
   },
 
     findByCategory: {

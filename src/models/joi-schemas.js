@@ -1,14 +1,5 @@
 import Joi from "joi";
 
-export const PlaceSpec = {
-  name: Joi.string().required(),
-  latitude: Joi.number().required(),
-  longitude: Joi.number().required(),
-  eircode: Joi.string().required(),
-  category: Joi.string().required(),
-  description: Joi.string().required(),
-}
-
 export const UpdatePlaceSpec = {
   latitude: Joi.number().required(),
   longitude: Joi.number().required(),
@@ -44,12 +35,22 @@ export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
 
 
-export const PlaylistSpec = {
-  title: Joi.string().required(),
-};
+export const PlaceSpec = Joi.object()
+  .keys({
+    name: Joi.string().required().example("Pot of Gold"),
+    latitude: Joi.number().required().example(52.123),
+    longitude: Joi.number().required().example(-7.456),
+    description: Joi.string().required().example("A place to visit"),
+    category: Joi.string().required().example("Landmark"),
+    eircode: Joi.string().required().example("R95 AZ09"), 
+    userid: IdSpec,
+  })
+  .label("Place");
 
-export const TrackSpec = {
-  title: Joi.string().required(),
-  artist: Joi.string().required(),
-  duration: Joi.number().allow("").optional(),
-};
+export const PlaceSpecPlus = PlaceSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("PlacePlus");
+
+export const PlaceArraySpec = Joi.array().items(PlaceSpecPlus).label("PlaceArray");
+
