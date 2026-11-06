@@ -4,7 +4,7 @@ import { PlaceSpec, UpdatePlaceSpec } from "../models/joi-schemas.js";
 export const placeController = {
   details: {
     handler: async function (request, h) {
-      const place = await db.placeStore.getPlaceById(request.params.id);
+      const place = await db.placeStore.getPlaceByIdWithUser(request.params.id);
 
       if (!place) {
         return h.response("Place not found").code(404);
@@ -45,7 +45,7 @@ export const placeController = {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       // get original place to use id and its name
-      const place = await db.placeStore.getPlaceById(request.params.id);
+      const place = await db.placeStore.getPlaceByIdWithUser(request.params.id);
 
       // stops someone from using a url to edit someone elses place
       if (!place) {
@@ -76,7 +76,7 @@ export const placeController = {
   handler: async function (request, h) {
     const loggedInUser = request.auth.credentials;
     
-    const place = await db.placeStore.getPlaceById(request.params.id);
+    const place = await db.placeStore.getPlaceByIdWithUser(request.params.id);
 
     if (!place) {
       return h.response("Place not found").code(404);

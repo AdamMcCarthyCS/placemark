@@ -10,7 +10,7 @@ export const adminController = {
       }
 
       const users = await db.userStore.getAllUsers(); // array
-      const places = await db.placeStore.getAllPlaces(); // array
+      const places = await db.placeStore.getAllPlacesWithUser(); // array
       const userCount = users.length;
       const placeCount = places.length;
       // create an array where every user is an object containing 

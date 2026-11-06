@@ -7,7 +7,7 @@ export const dashboardController = {
       const loggedInUser = request.auth.credentials;
       // eslint-disable-next-line prefer-destructuring
       const category = request.query.category;
-      const places = category ? await db.placeStore.getUserPlacesByCategory(loggedInUser._id, category) : 
+      const places = category ? await db.placeStore.getUserPlacesByCategoryWithUser(loggedInUser._id, category) : 
         await db.placeStore.getUserPlaces(loggedInUser._id);
       const viewData = {
         title: "Place Dashboard",
@@ -23,8 +23,8 @@ export const dashboardController = {
       const loggedInUser = request.auth.credentials;
       // eslint-disable-next-line prefer-destructuring
       const category = request.query.category;
-      const places = category ? await db.placeStore.getPlacesByCategory(category) : 
-        await db.placeStore.getAllPlaces();
+      const places = category ? await db.placeStore.getPlacesByCategoryWithUser(category) : 
+        await db.placeStore.getAllPlacesWithUser();
       const viewData = {
         title: "Place Dashboard",
         user: loggedInUser,

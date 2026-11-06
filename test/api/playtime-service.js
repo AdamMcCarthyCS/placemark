@@ -31,50 +31,41 @@ export const playtimeService = {
 
 
 
-  async createPlaylist(playlist) {
-    const res = await axios.post(`${this.playtimeUrl}/api/playlists`, playlist);
+  async createPlace(place) {
+    const res = await axios.post(`${this.playtimeUrl}/api/places`, place);
     return res.data;
   },
 
-  async getPlaylist(id) {
-    const res = await axios.get(`${this.playtimeUrl}/api/playlists/${id}`);
+  async getPlace(id) {
+    const res = await axios.get(`${this.playtimeUrl}/api/places/${id}`);
     return res.data;
   },
 
-  async getAllPlaylists() {
-    const res = await axios.get(`${this.playtimeUrl}/api/playlists`);
+  async getPlacesByUser(userid) {
+    const res = await axios.get(`${this.playtimeUrl}/api/places/user/${userid}`);
+    return res.data; 
+  },
+
+  async getPlacesCategory(category) {
+    const res = await axios.get(`${this.playtimeUrl}/api/places/category/${category}`);
     return res.data;
   },
 
-  async deletePlaylist(id) {
-    const res = await axios.delete(`${this.playtimeUrl}/api/playlists/${id}`);
+  async getAllPlaces() {
+    const res = await axios.get(`${this.playtimeUrl}/api/places`);
+    return res.data;
+  },
+
+  async deletePlace(id) {
+    const res = await axios.delete(`${this.playtimeUrl}/api/places/${id}`);
     return res;
   },
 
-  async deleteAllPlaylists() {
-    const res = await axios.delete(`${this.playtimeUrl}/api/playlists`);
+  async deleteAllPlaces() {
+    const res = await axios.delete(`${this.playtimeUrl}/api/places`);
     return res.data;
   },
 
+}
 
-
-  async createTrack(playlistId, track) {
-    const res = await axios.post(`${this.playtimeUrl}/api/tracks`, { playlistId, track });
-    return res.data;
-  },
-
-  async getAllTracks() {
-    const res = await axios.get(`${this.playtimeUrl}/api/tracks`);
-    return res.data;
-  },
-
-  async deleteAllTracks() {
-    const res = await axios.delete(`${this.playtimeUrl}/api/tracks`);
-    return res.data;
-  },
-
-  async getTrack(id) {
-    const res = await axios.get(`${this.playtimeUrl}/api/tracks/${id}`);
-    return res.data;
-  },
-};
+  
