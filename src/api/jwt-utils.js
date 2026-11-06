@@ -23,6 +23,7 @@ export function decodeToken(token) {
     const decoded = jwt.verify(token, process.env.cookie_password);
     userInfo.userId = decoded.id;
     userInfo.email = decoded.email;
+    userInfo.role = decoded.role;
   } catch (e) {
     console.log(e.message);
   }
