@@ -13,6 +13,7 @@ export const dashboardController = {
         title: "Place Dashboard",
         user: loggedInUser,
         places: places,
+        category: category,
       };
       return h.view("dashboard", viewData);
     },
@@ -30,6 +31,7 @@ export const dashboardController = {
         user: loggedInUser,
         places: places,
         admin: loggedInUser.role === "admin",
+        category: category,
       };
       return h.view("view-only-dashboard", viewData);
     },
