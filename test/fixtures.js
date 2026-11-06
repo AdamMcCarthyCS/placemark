@@ -1,7 +1,7 @@
 export const maggie = {
   firstName: "Maggie",
   lastName: "Smith",
-  email: "maggie.smith@test.example",
+  email: "maggie.smith@test.com",
   password: "secret",
   role: "user",
 };
@@ -10,28 +10,27 @@ export const testUsers = [
   {
     firstName: "Hozier",
     lastName: "Byrne",
-    email: "hozier.byrne@test.example",
+    email: "hozier.byrne@test.com",
     password: "secret",
     role: "user",
   },
   {
     firstName: "Enya",
     lastName: "Brennan",
-    email: "enya.brennan@test.example",
+    email: "enya.brennan@test.com",
     password: "secret",
     role: "user",
   },
   {
     firstName: "Rory",
     lastName: "McIlroy",
-    email: "rory.mcilroy@test.example",
+    email: "rory.mcilroy@test.com",
     password: "secret",
     role: "user",
   },
 ];
 
 export const place = {
-  userid: "61b2a82584224bf7bcdb9423",
   name: "Black Abbey",
   description: "A historic Dominican church in Kilkenny City.",
   category: "Landmark",
@@ -42,7 +41,6 @@ export const place = {
 
 export const testPlaces = [
   {
-    userid: "61b2a82584224bf7bcdb9423",
     name: "Butler Gallery",
     description: "An art gallery in the former Evans' Home building.",
     category: "Landmark",
@@ -51,7 +49,6 @@ export const testPlaces = [
     eircode: "R95 XW50",
   },
   {
-    userid: "61b2a82584224bf7bcdb9423",
     name: "Dunmore Park",
     description: "A public park and woodland area in Kilkenny.",
     category: "Landmark",
@@ -60,7 +57,6 @@ export const testPlaces = [
     eircode: "R95 TEST",
   },
   {
-    userid: "61b2a82584224bf7bcdb9423",
     name: "Gowran Park Racecourse",
     description: "A racecourse near the village of Gowran.",
     category: "Social",
