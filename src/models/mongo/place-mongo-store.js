@@ -5,7 +5,7 @@ export const placeMongoStore = {
   async getAllPlaces() {
   // use mongoose populate to replace user id with name for public dashboard
   // https://mongoosejs.com/docs/populate.html#field-selection
-  const places = await Place.find().populate("userid", "firstName lastName").lean();
+  const places = await Place.find().lean();
 
   return places;
   },
