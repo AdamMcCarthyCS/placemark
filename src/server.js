@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import Inert from "@hapi/inert"
 import Cookie from "@hapi/cookie";
+import HapiSwagger from "hapi-swagger"
 import dotenv from "dotenv";
 import Joi from "joi";
 import { webRoutes } from "./web-routes.js";
@@ -21,14 +22,29 @@ if (result.error) {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const swaggerOptions = {
+  info: {
+    title: "Playtime API",
+    version: "0.1",
+  },
+};
+
 async function init() {
   const server = Hapi.server({
     port: process.env.PORT,
     host: process.env.HOST,
   });
-  await server.register(Vision);
-  await server.register(Cookie);
-  await server.register(Inert);
+
+  await server.register([
+    Inert,
+    Vision,
+    Cookie,
+    {
+      plugin: HapiSwagger,
+      options: swaggerOptions,
+    }
+  ])
+
   server.validator(Joi);
 
   server.auth.strategy("session", "cookie", {
