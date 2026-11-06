@@ -4,6 +4,8 @@ import { assertSubset } from "../test-utils.js";
 import { maggie, place, testPlaces } from "../fixtures.js";
 import { db } from "../../src/models/db.js"
 
+const places = Array(testPlaces.length);
+
 suite("Place API tests", () => {
   let userId;
 
@@ -45,7 +47,7 @@ suite("Place API tests", () => {
   test("delete all places", async () => {
     for (let i = 0; i < testPlaces.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testPlaces[i] = await playtimeService.createPlace(testPlaces[i]);
+      places[i] = await playtimeService.createPlace(testPlaces[i]);
     }
     let returnedPlaces = await playtimeService.getAllPlaces();
     assert.equal(returnedPlaces.length, 3);
@@ -55,24 +57,21 @@ suite("Place API tests", () => {
   });
 
   test("get places by user", async () => {
-    for (let i = 0; i < testPlaces.length; i += 1) {
-      // eslint-disable-next-line no-await-in-loop
-      testPlaces[i] = await playtimeService.createPlace(
-        {
-          ...testPlaces[i],
-          userid: userId,
-        }
-      );
-    }
-    const returnedPlaces = await playtimeService.getPlacesByUser(userId);
-    assert.equal(returnedPlaces.length, 3);
-    });
+  for (let i = 0; i < testPlaces.length; i += 1) {
+    const newPlace = { ...testPlaces[i], userid: userId };
+    // eslint-disable-next-line no-await-in-loop
+    places[i] = await playtimeService.createPlace(newPlace);
+  }
+
+  const returnedPlaces = await playtimeService.getPlacesByUser(userId);
+  assert.equal(returnedPlaces.length, 3);
+});
 
   test("get places by category", async () => {
     for (let i = 0; i < testPlaces.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testPlaces[i] = await playtimeService.createPlace(testPlaces[i]);
-      testPlaces[i].userid = maggie._id
+      places[i] = await playtimeService.createPlace(testPlaces[i]);
+      places[i].userid = maggie._id
     }
     const returnedPlaces = await playtimeService.getPlacesCategory("Landmark");
     assert.equal(returnedPlaces.length, 2);

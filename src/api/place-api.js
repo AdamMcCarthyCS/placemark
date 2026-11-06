@@ -31,7 +31,7 @@ export const placeApi = {
     },
     tags: ["api"],
     response: { schema: PlaceArraySpec, failAction: validationError },
-    validate: { params: { id: IdSpec }, failAction: validationError },
+    validate: { params: { userid: IdSpec }, failAction: validationError },
     description: "Get all a users places",
     notes: "Returns all a users places based on their userid",
   },
