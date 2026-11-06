@@ -5,11 +5,14 @@ import { maggie, place, testPlaces } from "../fixtures.js";
 import { db } from "../../src/models/db.js"
 
 suite("Place API tests", () => {
+  let userId;
+
   setup(async () => {
     db.init("mongo")
     await playtimeService.deleteAllPlaces();
     await playtimeService.deleteAllUsers();
     const user = await playtimeService.createUser(maggie);
+    userId = user._id
     place.userid = user._id
   });
 
@@ -51,6 +54,30 @@ suite("Place API tests", () => {
     assert.equal(returnedPlaces.length, 0);
   });
 
+  test("get places by user", async () => {
+    for (let i = 0; i < testPlaces.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      testPlaces[i] = await playtimeService.createPlace(
+        {
+          ...testPlaces[i],
+          userid: userId,
+        }
+      );
+    }
+    const returnedPlaces = await playtimeService.getPlacesByUser(userId);
+    assert.equal(returnedPlaces.length, 3);
+    });
+
+  test("get places by category", async () => {
+    for (let i = 0; i < testPlaces.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      testPlaces[i] = await playtimeService.createPlace(testPlaces[i]);
+      testPlaces[i].userid = maggie._id
+    }
+    const returnedPlaces = await playtimeService.getPlacesCategory("Landmark");
+    assert.equal(returnedPlaces.length, 2);
+  });
+
   test("get a place bad id - fail", async () => {
     try {
       const returnedPlace = await playtimeService.getPlace("1234");
@@ -70,3 +97,4 @@ suite("Place API tests", () => {
     }
   });
 });
+
