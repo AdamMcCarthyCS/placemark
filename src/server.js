@@ -8,6 +8,8 @@ import Cookie from "@hapi/cookie";
 import HapiSwagger from "hapi-swagger"
 import dotenv from "dotenv";
 import Joi from "joi";
+import jwt from "hapi-auth-jwt2";
+import { validate } from "./api/jwt-utils.js";
 import { webRoutes } from "./web-routes.js";
 import { apiRoutes } from "./api-routes.js";
 import { db } from "./models/db.js";
@@ -39,6 +41,7 @@ async function init() {
     Inert,
     Vision,
     Cookie,
+    jwt,
     {
       plugin: HapiSwagger,
       options: swaggerOptions,
@@ -56,6 +59,13 @@ async function init() {
     redirectTo: "/",
     validate: accountsController.validate,
   });
+
+    server.auth.strategy("jwt", "jwt", {
+      key: process.env.cookie_password,
+      validate: validate,
+      verifyOptions: { algorithms: ["HS256"] }
+  });
+
   server.auth.default("session");
 
   server.views({
