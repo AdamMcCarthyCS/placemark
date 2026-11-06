@@ -35,7 +35,7 @@ export const userApi = {
       }
     },
     tags: ["api"],
-    description: "Get all userApi",
+    description: "Get all users",
     notes: "Returns details of all userApi",
     response: { schema: UserArray, failAction: validationError }
   },
@@ -75,8 +75,9 @@ export const userApi = {
       }
     },
     tags: ["api"],
-  description: "Delete one user",
-  notes: "One user removed from Placemark using their id",
+    validate: { params: { id: IdSpec, failAction: validationError }},
+    description: "Delete one user",
+    notes: "One user removed from Placemark using their id",
   },
 
   deleteAll: {
