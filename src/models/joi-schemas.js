@@ -33,7 +33,8 @@ export const UserSpecPlus = UserSpec
 
 export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
-
+export const CategorySpec = Joi.alternatives().try(Joi.string()).valid("Social", "Shopping", "Food and Dining", "Landmark")
+  .example("Landmark").required().description("a valid Category");
 
 export const PlaceSpec = Joi.object()
   .keys({
@@ -41,7 +42,7 @@ export const PlaceSpec = Joi.object()
     latitude: Joi.number().required().example(52.123),
     longitude: Joi.number().required().example(-7.456),
     description: Joi.string().required().example("A place to visit"),
-    category: Joi.string().required().example("Landmark"),
+    category: CategorySpec,
     eircode: Joi.string().required().example("R95 AZ09"), 
     userid: IdSpec,
   })
