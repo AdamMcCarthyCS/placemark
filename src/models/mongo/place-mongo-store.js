@@ -8,9 +8,23 @@ export const placeMongoStore = {
   const places = await Place.find().populate("userid", "firstName lastName").lean();
 
   return places;
-},
+  },
+
+    async getAllPlacesWithUser() {
+    const places = await Place.find().lean();
+
+    return places;
+  },
 
   async getPlaceById(id) {
+    if (Mongoose.isValidObjectId(id)) {
+      const place = await Place.findOne({ _id: id }).lean();
+      return place;
+    }
+    return null;
+  },
+
+  async getPlaceByIdWithUser(id) {
     if (Mongoose.isValidObjectId(id)) {
       const place = await Place.findOne({ _id: id }).populate("userid", "firstName lastName").lean();
       return place;
@@ -18,18 +32,37 @@ export const placeMongoStore = {
     return null;
   },
 
-  async getPlacesByCategory(placeCategory) {
+  async getPlacesByCategoryWithUser(placeCategory) {
     if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) {
       const place = Place.find({category: placeCategory}).populate("userid", "firstName lastName").lean();
       return place;
       }
       return null;
     },
+
+  async getPlacesByCategory(placeCategory) {
+    if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) {
+      const place = Place.find({category: placeCategory}).lean();
+      return place;
+      }
+      return null;
+    },
  
-  async getUserPlacesByCategory(userid, placeCategory) {
+  async getUserPlacesByCategoryWithUser(userid, placeCategory) {
     if (Mongoose.isValidObjectId(userid)) {
       if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) { 
         const place = Place.find({category: placeCategory, userid: userid}).populate("userid", "firstName lastName").lean();
+        return place;
+        }
+        return null;
+      }
+      return null;
+    },
+
+    async getUserPlacesByCategory(userid, placeCategory) {
+    if (Mongoose.isValidObjectId(userid)) {
+      if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) { 
+        const place = Place.find({category: placeCategory, userid: userid}).lean();
         return place;
         }
         return null;
