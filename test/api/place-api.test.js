@@ -1,19 +1,22 @@
 import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
-import { maggie, place, testPlaces } from "../fixtures.js";
+import { maggie, maggieCredentials, place, testPlaces } from "../fixtures.js";
 import { db } from "../../src/models/db.js"
 
 const places = Array(testPlaces.length);
 
 suite("Place API tests", () => {
   let userId;
-
+  let user;
   setup(async () => {
-    db.init("mongo")
+    playtimeService.clearAuth();
+    user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     await playtimeService.deleteAllPlaces();
     await playtimeService.deleteAllUsers();
-    const user = await playtimeService.createUser(maggie);
+    user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     userId = user._id
     place.userid = user._id
   });
