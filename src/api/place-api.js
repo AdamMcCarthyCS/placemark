@@ -24,14 +24,14 @@ export const placeApi = {
     auth: { strategy: "jwt" },
     handler: async function (request, h) {
       try {
-        return await db.placeStore.getUserPlaces(request.params.userid);
+        const userid = request.auth.credentials._id;
+        return await db.placeStore.getUserPlaces(userid);
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }
     },
     tags: ["api"],
     response: { schema: PlaceArraySpec, failAction: validationError },
-    validate: { params: { userid: IdSpec }, failAction: validationError },
     description: "Get all a users places",
     notes: "Returns all a users places based on their userid",
   },
