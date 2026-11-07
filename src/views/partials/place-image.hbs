@@ -4,6 +4,7 @@
       <img src={{place.img}}>
     </figure>
   </div>
+  {{#if isOwner }}
   <div class="card-content">
     <form action="/place/{{place._id}}/uploadimage" method="POST" enctype="multipart/form-data">
       <div id="file-select" class="file has-name is-fullwidth">
@@ -23,7 +24,7 @@
     </form>
   </div>
 </div>
-
+{{/if}}
 <script>
   const fileInput = document.querySelector(".file-input");
   fileInput.onchange = () => {
