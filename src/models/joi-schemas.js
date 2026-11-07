@@ -12,8 +12,8 @@ export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).descrip
                                                                                      
 export const UserCredentialSpec = Joi.object()
 .keys({
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
+  email: Joi.string().email().example("john@doe.com").required(),
+  password: Joi.string().example("password").required(),
 });
 
 export const UserSpec = UserCredentialSpec
@@ -55,3 +55,9 @@ export const PlaceSpecPlus = PlaceSpec.keys({
 
 export const PlaceArraySpec = Joi.array().items(PlaceSpecPlus).label("PlaceArray");
 
+export const JwtAuth = Joi.object()
+  .keys({
+    success: Joi.boolean().example("true").required(),
+    token: Joi.string().example("eyJhbGciOiJND.g5YmJisIjoiaGYwNTNjAOhE.gCWGmY5-YigQw0DCBo").required(),
+  })
+  .label("JwtAuth");

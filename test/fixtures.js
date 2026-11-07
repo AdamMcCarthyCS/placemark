@@ -6,6 +6,11 @@ export const maggie = {
   role: "user",
 };
 
+export const maggieCredentials = {
+  email: "maggie.smith@test.com",
+  password: "secret"
+};
+
 export const testUsers = [
   {
     firstName: "Hozier",
