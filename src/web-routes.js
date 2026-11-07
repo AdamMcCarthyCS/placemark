@@ -26,6 +26,9 @@ export const webRoutes = [
   { method: "GET", path: "/admin/info", config: adminController.info },
 
   // allow wildcards to support image names
-  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } }
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
+
+  // cloudinary route
+  { method: "POST", path: "/place/{id}/uploadimage", config: placeController.uploadImage },
 
 ];
