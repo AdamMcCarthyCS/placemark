@@ -101,6 +101,7 @@ export const placeMongoStore = {
     placeDoc.eircode = updatedPlace.eircode;
     placeDoc.category = updatedPlace.category;
     placeDoc.description = updatedPlace.description;
+    placeDoc.img = updatedPlace.img;
     await placeDoc.save();
   },
 };
