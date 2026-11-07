@@ -9,7 +9,6 @@ const users = new Array(testUsers.length);
 suite("User API tests", () => {
   let user;
   setup(async () => {
-    db.init("mongo")
     playtimeService.clearAuth();
     user = await playtimeService.createUser(maggie);
     await playtimeService.authenticate(maggie);
