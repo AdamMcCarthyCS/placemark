@@ -6,6 +6,9 @@
      "author": "Adam McCarthy",
      "type": "module",
      "main": "src/server.js",
+     "engines": {
+          "node": ">=20 <24"
+     },
      "scripts": {
           "start": "node src/server.js",
           "dev": "nodemon --ignore src/models/json/db.json --exec npm start",
