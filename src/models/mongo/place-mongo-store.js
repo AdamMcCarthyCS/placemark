@@ -11,7 +11,7 @@ export const placeMongoStore = {
   },
 
     async getAllPlacesWithUser() {
-    const places = await Place.find().lean();
+    const places = await Place.find().populate("userid", "firstName lastName").lean();
 
     return places;
   },

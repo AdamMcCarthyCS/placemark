@@ -20,14 +20,18 @@
           {{place.userid.firstName}} {{place.userid.lastName}}
         </p>
       </div>
-        {{#if isAdmin}}
-        <a href="/dashboard/public" class="button">Back to Places</a>
-        <a href="/place/{{place._id}}/editPlace?from=admin" class="button">Edit Place</a>
-        {{else if isPublic}}
-        <a href="/dashboard/public" class="button">Back to Public Places</a>
-        {{else}}
-        <a href="/dashboard/private" class="button">Back to Places</a>
-        <a href="/place/{{place._id}}/editPlace" class="button">Edit Place</a>
-        {{/if}}
+      {{#if isAdmin}}
+      <a href="/dashboard/public" class="button">Back to Places</a>
+      {{else if isPublic}}
+      <a href="/dashboard/public" class="button">Back to Public Places</a>
+      {{else}}
+      <a href="/dashboard/private" class="button">Back to Places</a>
+      {{/if}}
+
+      {{#if isAdmin}}
+      <a href="/place/{{place._id}}/editPlace?from=admin" class="button">Edit Place</a>
+      {{else if isOwner}}
+      <a href="/place/{{place._id}}/editPlace" class="button">Edit Place</a>
+      {{/if}}
     </div>
 </section>
