@@ -8,12 +8,15 @@ const places = Array(testPlaces.length);
 
 suite("Place API tests", () => {
   let userId;
-
+  let user;
   setup(async () => {
-    db.init("mongo")
+    playtimeService.clearAuth();
+    user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggie);
     await playtimeService.deleteAllPlaces();
     await playtimeService.deleteAllUsers();
-    const user = await playtimeService.createUser(maggie);
+    user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggie);
     userId = user._id
     place.userid = user._id
   });
