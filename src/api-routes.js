@@ -15,5 +15,8 @@ export const apiRoutes = [
   { method: "DELETE", path: "/api/places/{id}", config: placeApi.deleteOne },
   { method: "GET", path: "/api/places/user/{userid}", config: placeApi.findByUser },
   { method: "GET", path: "/api/places/category/{category}", config: placeApi.findByCategory },
+
+  // jwt authenticaiton route
+  { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
 ];
 

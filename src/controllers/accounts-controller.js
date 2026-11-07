@@ -26,7 +26,10 @@ export const accountsController = {
       },
     },
     handler: async function (request, h) {
-      const user = request.payload;
+      const user = {
+        ...request.payload,
+        role: "user",
+      };
       await db.userStore.addUser(user);
       return h.redirect("/");
     },
