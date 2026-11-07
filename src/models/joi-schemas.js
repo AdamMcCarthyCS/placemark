@@ -12,20 +12,20 @@ export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).descrip
                                                                                      
 export const UserCredentialSpec = Joi.object()
 .keys({
-  email: Joi.string().email().example("john@doe.com").required(),
-  password: Joi.string().example("password").required(),
+  email: Joi.string().email().example("adam@mccarthy.com").required(),
+  password: Joi.string().example("secret").required(),
 });
 
 export const UserSpec = UserCredentialSpec
   .keys({
     firstName: Joi.string().example("Adam").required(),
     lastName: Joi.string().example("McCarthy").required(),
-    role: Joi.string().example("user"),
   })
   .label("UserDetails");
 
 export const UserSpecPlus = UserSpec
   .keys({
+    role: Joi.string().example("user"),
     _id: IdSpec,
     __v: Joi.number(),
   }).label("UserDetailsPlus")
