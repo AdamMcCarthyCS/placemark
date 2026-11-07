@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
-import { maggie, testUsers } from "../fixtures.js";
+import { maggie, maggieCredentials, testUsers } from "../fixtures.js";
 import { db } from "../../src/models/db.js"
 
 const users = new Array(testUsers.length);
@@ -11,14 +11,14 @@ suite("User API tests", () => {
   setup(async () => {
     playtimeService.clearAuth();
     user = await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     await playtimeService.deleteAllUsers();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
       users[i] = await playtimeService.createUser(testUsers[i]);
     }
     user = await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     
   });
 
@@ -48,7 +48,7 @@ suite("User API tests", () => {
     await playtimeService.deleteAllUsers();
     // must reintroduce maggie to be allowed to check original 3 were deleted
     await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     returnedUsers = await playtimeService.getAllUsers();
     assert.equal(returnedUsers.length, 1);
   });
@@ -72,7 +72,7 @@ suite("User API tests", () => {
     await playtimeService.deleteAllUsers();
     // must reintroduce maggie to be allowed to check for user
     await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     try {
       const returnedUser = await playtimeService.getUser(users[0]._id);
       assert.fail("Should not return a response");
