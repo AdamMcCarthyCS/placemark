@@ -1,3 +1,7 @@
+<!-- 
+    each place field on this page will be prepopulated with original value as
+    partial is passed the original place 
+-->
 <form action="/place/{{place._id}}/editPlace{{#if fromAdmin}}?from=admin{{/if}}" method="POST">
     <div class="field">
         <label class="label">Name</label>
