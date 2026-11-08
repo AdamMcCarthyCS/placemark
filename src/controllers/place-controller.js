@@ -69,6 +69,7 @@ export const placeController = {
         eircode: request.payload.eircode,
         category: request.payload.category,
         description: request.payload.description,
+        img: img,
         _id: place._id
       };
       await db.placeStore.updatePlace(editedPlace);
