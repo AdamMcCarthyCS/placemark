@@ -11,7 +11,7 @@ export const dashboardController = {
       // eslint-disable-next-line prefer-destructuring
       const category = request.query.category;
       // the filter buttons return query strings which decide the places which are filtered and shown
-      const places = category ? await db.placeStore.getUserPlacesByCategoryWithUser(loggedInUser._id, category) : 
+      const places = category ? await db.placeStore.getUserPlacesByCategory(loggedInUser._id, category) : 
         await db.placeStore.getUserPlaces(loggedInUser._id);
       const viewData = {
         title: "Place Dashboard",

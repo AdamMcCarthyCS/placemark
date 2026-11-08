@@ -5,14 +5,17 @@ import { imageStore } from "../models/image-store.js"
 export const placeController = {
   details: {
     handler: async function (request, h) {
+      // return place with users so owner name appears with each place
       const place = await db.placeStore.getPlaceByIdWithUser(request.params.id);
 
       if (!place) {
         return h.response("Place not found").code(404);
       }
-      // sets isPublic based on where route came from private or public button on list-pages.hbs
+      // isPublic displays the user menu and if user access details from public page they are redirected "back" there
       const isPublic = request.query.from === "public";
+      // isAdmin displays the edit button and redirects back to the places page on "back"
       const isAdmin = request.auth.credentials.role === "admin";
+      // isOwner displays the edit button and redirects the user back to their my-places page if accessed from there
       const isOwner = request.auth.credentials._id.toString() === place.userid._id.toString();
 
       return h.view("place-details", {

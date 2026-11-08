@@ -4,6 +4,8 @@
       <img src={{place.img}}>
     </figure>
   </div>
+  <!-- only the owner is allowed to upload an image -->
+  <!-- if admin is unhappy with image they have option to delete place. In V2 I will possibly allow admin to reset image -->
   {{#if isOwner }}
   <div class="card-content">
     <form action="/place/{{place._id}}/uploadimage" method="POST" enctype="multipart/form-data">
