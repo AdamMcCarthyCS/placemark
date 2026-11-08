@@ -1,7 +1,9 @@
 import { db } from "../models/db.js";
 
 export const adminController = {
+
   info: {
+    // this creates an array which is used to populate the admin info page
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
 
@@ -11,8 +13,8 @@ export const adminController = {
 
       const users = await db.userStore.getAllUsers(); // array
       const places = await db.placeStore.getAllPlacesWithUser(); // array
-      const userCount = users.length;
-      const placeCount = places.length;
+      const userCount = users.length; // number of users
+      const placeCount = places.length; // number of places
       // create an array where every user is an object containing 
       // first and last name, email, and the places theyve added. This will
       // be iterated over with handlebars to populate the info page

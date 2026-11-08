@@ -1,12 +1,16 @@
 import { db } from "../models/db.js";
 import { PlaceSpec } from "../models/joi-schemas.js";
 
+// group route objects based on the functionality that is invoked
+// on the dashboard
 export const dashboardController = {
+  // this is each non admin user's "my places" dashboard route object
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       // eslint-disable-next-line prefer-destructuring
       const category = request.query.category;
+      // the filter buttons return query strings which decide the places which are filtered and shown
       const places = category ? await db.placeStore.getUserPlacesByCategoryWithUser(loggedInUser._id, category) : 
         await db.placeStore.getUserPlaces(loggedInUser._id);
       const viewData = {
@@ -19,17 +23,20 @@ export const dashboardController = {
     },
   },
 
+  // this is the public dashboard and also the main admin places dashboard
   publicDashboard: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       // eslint-disable-next-line prefer-destructuring
       const category = request.query.category;
+      // the filter buttons return query strings which decide the places which are filtered and shown
       const places = category ? await db.placeStore.getPlacesByCategoryWithUser(category) : 
         await db.placeStore.getAllPlacesWithUser();
       const viewData = {
         title: "Place Dashboard",
         user: loggedInUser,
         places: places,
+        // returns a truthy value if admin is logged in used by conditionals in the partials rendered
         admin: loggedInUser.role === "admin",
         category: category,
       };
@@ -57,8 +64,21 @@ export const dashboardController = {
         description: request.payload.description,
       };
       await db.placeStore.addPlace(newPlace);
+      // adding a place always returns to the users "my places" dashboard
       return h.redirect("/dashboard/private");
     },
   },
+
+  deletePlace: {
+      handler: async function (request, h) {
+        const isAdmin = request.auth.credentials.role === "admin";
+        const place = await db.placeStore.getPlaceById(request.params.id);
+        await db.placeStore.deletePlaceById(place._id);
+        if (isAdmin) {
+          return h.redirect("/dashboard/public")
+        }
+        return h.redirect("/dashboard/private");
+      },
+    },
 
 };
