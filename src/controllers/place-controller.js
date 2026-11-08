@@ -38,15 +38,14 @@ export const placeController = {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       // get original place to use id and its name
-      const place = await db.placeStore.getPlaceByIdWithUser(request.params.id);
+      const place = await db.placeStore.getPlaceById(request.params.id);
 
-      // stops someone from using a url to edit someone elses place
       if (!place) {
       return h.response("Place not found").code(404);
       }
 
-      // this is another result of mongoose.populate "place.userid._id"
-      if (place.userid._id.toString() !== loggedInUser._id.toString() && loggedInUser.role !== "admin") {
+      // stops direct url access to unauthorized user
+      if (place.userid.toString() !== loggedInUser._id.toString() && loggedInUser.role !== "admin") {
         return h.response("Unauthorized").code(403)
       }
 
@@ -71,7 +70,7 @@ export const placeController = {
   handler: async function (request, h) {
     const loggedInUser = request.auth.credentials;
     
-    const place = await db.placeStore.getPlaceByIdWithUser(request.params.id);
+    const place = await db.placeStore.getPlaceById(request.params.id);
 
     if (!place) {
       return h.response("Place not found").code(404);
@@ -82,7 +81,7 @@ export const placeController = {
     const isShopping = place.category === "Shopping";
     const isFoodAndDining = place.category === "Food and Dining";
 
-    if (place.userid._id.toString() !== loggedInUser._id.toString() && loggedInUser.role !== "admin") {
+    if (place.userid.toString() !== loggedInUser._id.toString() && loggedInUser.role !== "admin") {
       return h.response("Forbidden").code(403);
     }
     
