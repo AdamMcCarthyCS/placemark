@@ -41,8 +41,8 @@ const swaggerOptions = {
 
 async function init() {
   const server = Hapi.server({
-    port: process.env.PORT,
-    host: process.env.HOST,
+    port: process.env.port,
+    host: "0.0.0.0",
   });
 
   await server.register([
@@ -60,7 +60,7 @@ async function init() {
 
   server.auth.strategy("session", "cookie", {
     cookie: {
-      name: process.env.NAME,
+      name: process.env.name,
       password: process.env.cookie_password,
       isSecure: false,
     },

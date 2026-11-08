@@ -41,8 +41,8 @@ export const playtimeService = {
     return res.data;
   },
 
-  async getPlacesByUser(userid) {
-    const res = await axios.get(`${this.playtimeUrl}/api/places/user/${userid}`);
+  async getPlacesByUser() {
+    const res = await axios.get(`${this.playtimeUrl}/api/places/user/`);
     return res.data; 
   },
 

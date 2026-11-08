@@ -13,7 +13,7 @@ export const apiRoutes = [
   { method: "GET", path: "/api/places/{id}", config: placeApi.findOne },
   { method: "DELETE", path: "/api/places", config: placeApi.deleteAll },
   { method: "DELETE", path: "/api/places/{id}", config: placeApi.deleteOne },
-  { method: "GET", path: "/api/places/user/{userid}", config: placeApi.findByUser },
+  { method: "GET", path: "/api/places/user/", config: placeApi.findByUser },
   { method: "GET", path: "/api/places/category/{category}", config: placeApi.findByCategory },
 
   // jwt authenticaiton route

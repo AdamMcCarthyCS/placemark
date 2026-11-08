@@ -93,14 +93,15 @@ export const placeMongoStore = {
     await Place.deleteMany({});
   },
 
-  async updatePlace(place, updatedPlace) {
+  async updatePlace(place) {
     const placeDoc = await Place.findOne({ _id: place._id });
-    placeDoc.name = updatedPlace.name;
-    placeDoc.latitude = updatedPlace.latitude;
-    placeDoc.longitude = updatedPlace.longitude;
-    placeDoc.eircode = updatedPlace.eircode;
-    placeDoc.category = updatedPlace.category;
-    placeDoc.description = updatedPlace.description;
+    placeDoc.name = place.name;
+    placeDoc.latitude = place.latitude;
+    placeDoc.longitude = place.longitude;
+    placeDoc.eircode = place.eircode;
+    placeDoc.category = place.category;
+    placeDoc.description = place.description;
+    placeDoc.img = place.img;
     await placeDoc.save();
   },
 };
