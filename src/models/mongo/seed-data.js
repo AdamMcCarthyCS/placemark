@@ -40,6 +40,7 @@ export const seedData = {
       latitude: 52.6508,
       longitude: -7.2492,
       eircode: "R95 YRK1",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794069793/f7gywybqim9uox582dxh.avif",
       userid: "->users.saoirse",
     },
     stCanicesCathedral: {
@@ -49,6 +50,7 @@ export const seedData = {
       latitude: 52.6553,
       longitude: -7.2561,
       eircode: "R95 V63H",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794068918/hivrks8i2metuom7awm4.webp",
       userid: "->users.cillian",
     },
     smithwicksExperience: {
@@ -58,6 +60,7 @@ export const seedData = {
       latitude: 52.6545,
       longitude: -7.2518,
       eircode: "R95 VK54",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794070661/rlmbj1bew5zzyve1oie7.png",
       userid: "->users.katie",
     },
     rotheHouse: {
@@ -67,6 +70,7 @@ export const seedData = {
       latitude: 52.654,
       longitude: -7.2544,
       eircode: "R95 P89C",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794069842/c9nyitxebyv7vrpwycbq.jpg",
       userid: "->users.saoirse",
     },
     jerpointAbbey: {
@@ -76,6 +80,7 @@ export const seedData = {
       latitude: 52.5154,
       longitude: -7.1567,
       eircode: "R95 P523",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794068999/sfljpgkwfzdnbvcb6p0a.jpg",
       userid: "->users.cillian",
     },
     dunmoreCave: {
@@ -85,6 +90,7 @@ export const seedData = {
       latitude: 52.7352,
       longitude: -7.1958,
       eircode: "R95 A972",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794070749/zlq6b3d186uiwyt6ipnl.webp",
       userid: "->users.katie",
     },
     kilfaneGlen: {
@@ -94,6 +100,7 @@ export const seedData = {
       latitude: 52.519,
       longitude: -7.1704,
       eircode: "R95 RXO5",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794069926/snzvqm8gbcn0evrc7jcy.jpg",
       userid: "->users.saoirse",
     },
     kellsPriory: {
@@ -103,6 +110,7 @@ export const seedData = {
       latitude: 52.5391,
       longitude: -7.2815,
       eircode: "R95 V184",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794069094/v8fionlc66n4l77is8qh.jpg",
       userid: "->users.cillian",
     },
     holeInTheWall: {
@@ -112,6 +120,7 @@ export const seedData = {
       latitude: 52.6535,
       longitude: -7.25,
       eircode: "R95 TY30",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794070842/l7lplonepuftipmv42mv.jpg",
       userid: "->users.katie",
     },
     kytelersInn: {
@@ -121,6 +130,7 @@ export const seedData = {
       latitude: 52.6543,
       longitude: -7.253,
       eircode: "R95 RP40",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794069990/xhh6zo9x7n06vemrf18z.jpg",
       userid: "->users.saoirse",
     },
     leftBank: {
@@ -130,6 +140,7 @@ export const seedData = {
       latitude: 52.6508,
       longitude: -7.251,
       eircode: "R95 HY09",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794069197/lqbbextmad4xflnqrvxq.jpg",
       userid: "->users.cillian",
     },
     campagne: {
@@ -139,6 +150,7 @@ export const seedData = {
       latitude: 52.6531,
       longitude: -7.2462,
       eircode: "R95 X092",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794070887/uxfuowjmnorzgvrwxmeq.jpg",
       userid: "->users.katie",
     },
     cafeLaCoco: {
@@ -148,6 +160,7 @@ export const seedData = {
       latitude: 52.6531,
       longitude: -7.2519,
       eircode: "R95 YV6X",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794070087/scvi6oj4qpspkvfeccwm.jpg",
       userid: "->users.saoirse",
     },
     marketCrossShoppingCentre: {
@@ -157,6 +170,7 @@ export const seedData = {
       latitude: 52.6534,
       longitude: -7.2534,
       eircode: "R95 V32A",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794069256/qu7n14cujzvr7rwlois9.jpg",
       userid: "->users.cillian",
     },
     macdonaghJunction: {
@@ -166,6 +180,7 @@ export const seedData = {
       latitude: 52.6572,
       longitude: -7.2474,
       eircode: "R95 W8RH",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794070932/ryg4pj3qnq04go5vqhjj.jpg",
       userid: "->users.katie",
     },
     nationalDesignCraftGallery: {
@@ -175,6 +190,7 @@ export const seedData = {
       latitude: 52.649907,
       longitude: -7.249555,
       eircode: "R95 CAA6",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794070178/oj0dgbtstnjpkndfeqh0.jpg",
       userid: "->users.saoirse",
     },
     cushendaleWoollenMills: {
@@ -184,6 +200,7 @@ export const seedData = {
       latitude: 52.5411,
       longitude: -6.9575,
       eircode: "R95 PP83",
+      img: "http://res.cloudinary.com/da9cz3ug6/image/upload/v1794069335/jndiyfblm0wl8zjgih3b.jpg",
       userid: "->users.cillian",
     },
   },

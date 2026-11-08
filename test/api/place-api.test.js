@@ -66,7 +66,7 @@ suite("Place API tests", () => {
     places[i] = await playtimeService.createPlace(newPlace);
   }
 
-  const returnedPlaces = await playtimeService.getPlacesByUser(userId);
+  const returnedPlaces = await playtimeService.getPlacesByUser();
   assert.equal(returnedPlaces.length, 3);
 });
 
