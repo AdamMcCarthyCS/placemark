@@ -1,5 +1,6 @@
 import Joi from "joi";
 
+// may add updating in API V2 using PATCH/PUT request
 export const UpdatePlaceSpec = {
   latitude: Joi.number().required(),
   longitude: Joi.number().required(),
@@ -25,6 +26,7 @@ export const UserSpec = UserCredentialSpec
 
 export const UserSpecPlus = UserSpec
   .keys({
+    // role in UserSpecPlus so it doesnt appear in swagger input example for create user
     role: Joi.string().example("user"),
     _id: IdSpec,
     __v: Joi.number(),
@@ -33,6 +35,8 @@ export const UserSpecPlus = UserSpec
 
 export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
+// categorySpec added for validation of category passed by user in api. Strict categories enforced:
+// https://joi.dev/api/18.x.x#anyvalidvalues---aliases-equal
 export const CategorySpec = Joi.alternatives().try(Joi.string()).valid("Social", "Shopping", "Food and Dining", "Landmark")
   .example("Landmark").required().description("a valid Category");
 
