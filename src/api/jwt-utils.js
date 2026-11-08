@@ -8,6 +8,7 @@ export function createToken(user) {
   const payload = {
     id: user._id,
     email: user.email,
+    // role added to user token in order to check privalages
     role: user.role,
   };
   const options = {
@@ -23,6 +24,7 @@ export function decodeToken(token) {
     const decoded = jwt.verify(token, process.env.cookie_password);
     userInfo.userId = decoded.id;
     userInfo.email = decoded.email;
+    // get role also to use in handler checks
     userInfo.role = decoded.role;
   } catch (e) {
     console.log(e.message);
