@@ -1,3 +1,16 @@
+export const adminSeedData = {
+  users: {
+    _model: "User",
+    admin: {
+      firstName: "Admin",
+      lastName: "User",
+      email: "admin@example.com",
+      password: "secret",
+      role: "admin",
+    },
+  },
+}
+
 export const seedData = {
   users: {
     _model: "User",
@@ -21,13 +34,6 @@ export const seedData = {
       email: "katie.taylor@example.com",
       password: "secret",
       role: "user",
-    },
-    admin: {
-      firstName: "Admin",
-      lastName: "User",
-      email: "admin@example.com",
-      password: "secret",
-      role: "admin",
     },
   },
 

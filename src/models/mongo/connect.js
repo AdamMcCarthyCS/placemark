@@ -1,7 +1,8 @@
 import * as dotenv from "dotenv";
 import Mongoose from "mongoose";
 import * as mongooseSeeder from "mais-mongoose-seeder";
-import { seedData } from "./seed-data.js";
+import { seedData, adminSeedData } from "./seed-data.js";
+import { User } from "./user.js";
 
 const seedLib = mongooseSeeder.default;
 
@@ -11,6 +12,15 @@ async function seed() {
   console.log(dbData);
 }
 
+
+async function adminSeed() {
+  // mongoose exists function https://mongoosejs.com/docs/api/model.html#Model.exists()
+  const adminExists = await User.exists({ email: "admin@example.com" });
+  if (!adminExists) {
+    const seeder = seedLib(Mongoose);
+    await seeder.seed(adminSeedData, { dropDatabase: false, dropCollections: false });
+  }
+}
 
 export function connectMongo() {
   dotenv.config();
@@ -29,7 +39,8 @@ export function connectMongo() {
 
   db.once("open", function () {
     console.log(`database connected to ${this.name} on ${this.host}`);
+    adminSeed();
     // allow seeding for demonstration purposes
-    seed();
+    // seed();
   });
 }
