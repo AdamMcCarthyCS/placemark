@@ -5,14 +5,17 @@ import { imageStore } from "../models/image-store.js"
 export const placeController = {
   details: {
     handler: async function (request, h) {
+      // return place with users so owner name appears with each place
       const place = await db.placeStore.getPlaceByIdWithUser(request.params.id);
 
       if (!place) {
         return h.response("Place not found").code(404);
       }
-      // sets isPublic based on where route came from private or public button on list-pages.hbs
+      // isPublic displays the user menu and if user access details from public page they are redirected "back" there
       const isPublic = request.query.from === "public";
+      // isAdmin displays the edit button and redirects back to the places page on "back"
       const isAdmin = request.auth.credentials.role === "admin";
+      // isOwner displays the edit button and redirects the user back to their my-places page if accessed from there
       const isOwner = request.auth.credentials._id.toString() === place.userid._id.toString();
 
       return h.view("place-details", {
@@ -25,17 +28,7 @@ export const placeController = {
     },
   },
 
-  deletePlace: {
-    handler: async function (request, h) {
-      const isAdmin = request.auth.credentials.role === "admin";
-      const place = await db.placeStore.getPlaceById(request.params.id);
-      await db.placeStore.deletePlaceById(place._id);
-      if (isAdmin) {
-        return h.redirect("/dashboard/public")
-      }
-      return h.redirect("/dashboard/private");
-    },
-  },
+  
 
   editPlace: {
     validate: {
@@ -48,15 +41,14 @@ export const placeController = {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       // get original place to use id and its name
-      const place = await db.placeStore.getPlaceByIdWithUser(request.params.id);
+      const place = await db.placeStore.getPlaceById(request.params.id);
 
-      // stops someone from using a url to edit someone elses place
       if (!place) {
       return h.response("Place not found").code(404);
       }
 
-      // this is another result of mongoose.populate "place.userid._id"
-      if (place.userid._id.toString() !== loggedInUser._id.toString() && loggedInUser.role !== "admin") {
+      // stops direct url access to unauthorized user
+      if (place.userid.toString() !== loggedInUser._id.toString() && loggedInUser.role !== "admin") {
         return h.response("Unauthorized").code(403)
       }
 
@@ -81,7 +73,7 @@ export const placeController = {
   handler: async function (request, h) {
     const loggedInUser = request.auth.credentials;
     
-    const place = await db.placeStore.getPlaceByIdWithUser(request.params.id);
+    const place = await db.placeStore.getPlaceById(request.params.id);
 
     if (!place) {
       return h.response("Place not found").code(404);
@@ -92,7 +84,7 @@ export const placeController = {
     const isShopping = place.category === "Shopping";
     const isFoodAndDining = place.category === "Food and Dining";
 
-    if (place.userid._id.toString() !== loggedInUser._id.toString() && loggedInUser.role !== "admin") {
+    if (place.userid.toString() !== loggedInUser._id.toString() && loggedInUser.role !== "admin") {
       return h.response("Forbidden").code(403);
     }
     

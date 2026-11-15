@@ -13,6 +13,8 @@ export const userApi = {
         const user = await db.userStore.addUser(
           {
             ...request.payload,
+            // the purpose of adding role here is so user cannot add thier own role
+            // therefore admin must be seeded.
             role: "user"
           });
         if (user) {
@@ -46,6 +48,11 @@ export const userApi = {
     response: { schema: UserArray, failAction: validationError }
   },
 
+  /*
+  in second iteration of this I will allow admin only use
+  as this returns private info such as email. Password will also be hashed
+  second time around
+  */
   findOne: {
     auth: { strategy: "jwt" },
     handler: async function (request, h) {
@@ -66,6 +73,7 @@ export const userApi = {
     response: { schema: UserSpecPlus, failAction: validationError },
   },
 
+  // In second iteration of app admin/owner only deletion will be allowed
   deleteOne: {
     auth: { strategy: "jwt" },
     handler: async function (request, h){

@@ -1,3 +1,4 @@
+<!-- display appropriate menu depending on whether admin or user is accessing -->
 {{#if admin}}
     {{> admin-menu active="places"}}
 {{else}}
@@ -6,5 +7,6 @@
 
 <section class="section">
     {{> filter-menu isPublic=true}}
+    <!-- in the case of admin user the isAdmin list places branch runs -->
     {{> list-places isPublic=true}}
 </section>

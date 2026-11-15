@@ -24,6 +24,7 @@ export const placeApi = {
     auth: { strategy: "jwt" },
     handler: async function (request, h) {
       try {
+        // return only places belonging to authenticated user
         const userid = request.auth.credentials._id;
         return await db.placeStore.getUserPlaces(userid);
       } catch (err) {
@@ -115,7 +116,11 @@ export const placeApi = {
   description: "Delete all places",
   notes: "All places removed from Placemark",
 },
-
+  /* 
+  In second iteration of this app I hope to have only the admin is allowed to use this
+  this will require an overhaul of the tests that I felt was beyond scope of my
+  goals for this assignment
+  */
   deleteAll: {
     auth: { strategy: "jwt" },
     handler: async function (request, h) {

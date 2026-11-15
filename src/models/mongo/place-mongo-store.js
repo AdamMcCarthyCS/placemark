@@ -1,15 +1,27 @@
 import Mongoose from "mongoose";
 import { Place } from "./place.js";
 
+/*
+I have duplicated many functions here to return places both with and without the user
+first and last name. The reason for this is so names can be displayed with places on the UX
+this is not DRY but has the benefit of making the purpose of the calls of the functions 
+more clear in the code
+*/
+
+/*
+using mongoose populate to replace user id with first and last name throughout
+https://mongoosejs.com/docs/populate.html#field-selection
+*/
+
 export const placeMongoStore = {
+  // used in API or where all places filter is chosen on dashboard
   async getAllPlaces() {
-  // use mongoose populate to replace user id with name for public dashboard
-  // https://mongoosejs.com/docs/populate.html#field-selection
   const places = await Place.find().lean();
 
   return places;
   },
-
+    // Used to display users names with places on public dashboard
+    // Used to populate site info on admin-info page
     async getAllPlacesWithUser() {
     const places = await Place.find().populate("userid", "firstName lastName").lean();
 
@@ -24,6 +36,7 @@ export const placeMongoStore = {
     return null;
   },
 
+  // used to include user name with place on place-details page
   async getPlaceByIdWithUser(id) {
     if (Mongoose.isValidObjectId(id)) {
       const place = await Place.findOne({ _id: id }).populate("userid", "firstName lastName").lean();
@@ -32,6 +45,7 @@ export const placeMongoStore = {
     return null;
   },
 
+  // used to include user name on filtered view of public dsahboard
   async getPlacesByCategoryWithUser(placeCategory) {
     if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) {
       const place = Place.find({category: placeCategory}).populate("userid", "firstName lastName").lean();
@@ -48,17 +62,6 @@ export const placeMongoStore = {
       return null;
     },
  
-  async getUserPlacesByCategoryWithUser(userid, placeCategory) {
-    if (Mongoose.isValidObjectId(userid)) {
-      if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) { 
-        const place = Place.find({category: placeCategory, userid: userid}).populate("userid", "firstName lastName").lean();
-        return place;
-        }
-        return null;
-      }
-      return null;
-    },
-
     async getUserPlacesByCategory(userid, placeCategory) {
     if (Mongoose.isValidObjectId(userid)) {
       if (["Social", "Landmark", "Food and Dining", "Shopping"].includes(placeCategory)) { 
