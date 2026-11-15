@@ -1,42 +1,84 @@
 import { db } from "../models/db.js";
-import { PlaylistSpec } from "../models/joi-schemas.js";
+import { PlaceSpec } from "../models/joi-schemas.js";
 
+// group route objects based on the functionality that is invoked
+// on the dashboard
 export const dashboardController = {
+  // this is each non admin user's "my places" dashboard route object
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const playlists = await db.playlistStore.getUserPlaylists(loggedInUser._id);
+      // eslint-disable-next-line prefer-destructuring
+      const category = request.query.category;
+      // the filter buttons return query strings which decide the places which are filtered and shown
+      const places = category ? await db.placeStore.getUserPlacesByCategory(loggedInUser._id, category) : 
+        await db.placeStore.getUserPlaces(loggedInUser._id);
       const viewData = {
-        title: "Playtime Dashboard",
+        title: "Place Dashboard",
         user: loggedInUser,
-        playlists: playlists,
+        places: places,
+        category: category,
       };
       return h.view("dashboard", viewData);
     },
   },
-  addPlaylist: {
+
+  // this is the public dashboard and also the main admin places dashboard
+  publicDashboard: {
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      // eslint-disable-next-line prefer-destructuring
+      const category = request.query.category;
+      // the filter buttons return query strings which decide the places which are filtered and shown
+      const places = category ? await db.placeStore.getPlacesByCategoryWithUser(category) : 
+        await db.placeStore.getAllPlacesWithUser();
+      const viewData = {
+        title: "Place Dashboard",
+        user: loggedInUser,
+        places: places,
+        // returns a truthy value if admin is logged in used by conditionals in the partials rendered
+        admin: loggedInUser.role === "admin",
+        category: category,
+      };
+      return h.view("view-only-dashboard", viewData);
+    },
+  },
+
+  addPlace: {
     validate: {
-      payload: PlaylistSpec,
+      payload: PlaceSpec,
+      options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("dashboard", { title: "Error adding playlist", errors: error.details }).takeover().code(400);
+        return h.view("dashboard", { title: "Error adding place", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const newPlaylist = {
+      const newPlace = {
         userid: loggedInUser._id,
-        title: request.payload.title,
+        name: request.payload.name,
+        latitude: request.payload.latitude,
+        longitude: request.payload.longitude,
+        eircode: request.payload.eircode,
+        category: request.payload.category,
+        description: request.payload.description,
       };
-      await db.playlistStore.addPlaylist(newPlaylist);
-      return h.redirect("/dashboard");
+      await db.placeStore.addPlace(newPlace);
+      // adding a place always returns to the users "my places" dashboard
+      return h.redirect("/dashboard/private");
     },
   },
 
-  deletePlaylist: {
-    handler: async function (request, h) {
-      const playlist = await db.playlistStore.getPlaylistById(request.params.id);
-      await db.playlistStore.deletePlaylistById(playlist._id);
-      return h.redirect("/dashboard");
+  deletePlace: {
+      handler: async function (request, h) {
+        const isAdmin = request.auth.credentials.role === "admin";
+        const place = await db.placeStore.getPlaceById(request.params.id);
+        await db.placeStore.deletePlaceById(place._id);
+        if (isAdmin) {
+          return h.redirect("/dashboard/public")
+        }
+        return h.redirect("/dashboard/private");
+      },
     },
-  },
+
 };

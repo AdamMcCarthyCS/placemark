@@ -1,0 +1,18 @@
+<!-- 
+If the button is pressed on the user public page or admin places page then it filters and redisplays 
+that page. If the button is pressed on a users my places page then it filters and redisplays my places.
+The query parameter passes the string neeeded by the getPlacesByCategory function to retrieve the needed
+places -->
+<div class="buttons">
+  <a id="all" href="/dashboard/{{#if isPublic}}public{{else}}private{{/if}}" class="button">All</a>
+  <a id="Social" href="/dashboard/{{#if isPublic}}public{{else}}private{{/if}}?category=Social" class="button">Social</a>
+  <a id="Shopping" href="/dashboard/{{#if isPublic}}public{{else}}private{{/if}}?category=Shopping" class="button">Shopping</a>
+  <a id="Food and Dining" href="/dashboard/{{#if isPublic}}public{{else}}private{{/if}}?category=Food%20and%20Dining" class="button">Food and Dining</a>
+  <a id="Landmark" href="/dashboard/{{#if isPublic}}public{{else}}private{{/if}}?category=Landmark" class="button">Landmark</a>
+</div>
+
+<!-- If a category has been chosen then highlight that category button. Otherwise highlight All" -->
+<script>
+  const activeCategory = "{{#if category}}{{category}}{{else}}all{{/if}}";
+  document.getElementById(activeCategory).classList.add("is-primary");
+</script>

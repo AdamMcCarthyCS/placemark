@@ -1,0 +1,52 @@
+  {{#if isAdmin }}
+  <!-- shows admin menu -->
+  {{> admin-menu active="places"}}
+  {{else if isPublic}}
+  <!-- shows user menu -->
+  {{> menu active="public dashboard"}}
+  {{else}}
+  <!-- shows user menu -->
+  {{> menu active="private dashboard"}}
+  {{/if}}
+<section class="section mb-1">
+  <div class="columns is-centered">
+    <!-- shows picture taking up only half of page and centered -->
+    <div class="column is-half">
+      {{> place-image}}
+    </div>
+  </div>
+</section>
+<section>
+    <div class="box">
+      <h1 class="title">{{place.name}}</h1>
+
+      <p class="subtitle">{{place.category}}</p>
+      <p>{{place.description}}</p>
+
+      <div class="content mt-2">
+        <p><strong>Latitude:</strong> {{place.latitude}}, <Strong>Longitude:</Strong> {{ place.longitude }} </p>
+        <p><strong>Eircode:</strong> {{place.eircode}}</p>
+        <!-- Using mongoose populate fields -->
+        <p><strong>Added by:</strong>
+          {{place.userid.firstName}} {{place.userid.lastName}}
+        </p>
+      </div>
+      <!-- redirect route chosen based on whether user is owner, admin, or just a user browsing -->
+      {{#if isAdmin}}
+      <a href="/dashboard/public" class="button">Back to Places</a>
+      {{else if isPublic}}
+      <a href="/dashboard/public" class="button">Back to Public Places</a>
+      {{else}}
+      <a href="/dashboard/private" class="button">Back to Places</a>
+      {{/if}}
+
+
+      <!-- show edit button only for the owner or admin-->
+      {{#if isAdmin}}
+      <!-- ?from=admin must be included so that correct admin menu is rendered and back button goes to admin places -->
+      <a href="/place/{{place._id}}/editPlace?from=admin" class="button">Edit Place</a>
+      {{else if isOwner}}
+      <a href="/place/{{place._id}}/editPlace" class="button">Edit Place</a>
+      {{/if}}
+    </div>
+</section>

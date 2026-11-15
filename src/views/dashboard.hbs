@@ -1,6 +1,9 @@
-{{> menu active="dashboard"}}
+{{> menu active="private dashboard"}}
 
 <section class="section">
-    {{> list-playlists}}
-    {{> add-playlist}}
+    <!-- Keep place adding to top of page as list may grow very long -->
+    {{> add-place}}
+    <hr>
+    {{> filter-menu }}
+    {{> list-places}}
 </section>
